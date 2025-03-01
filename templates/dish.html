@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ dish.name }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-800 text-white p-6">
+    <div class="max-w-4xl mx-auto bg-gray-900 rounded-lg overflow-hidden flex items-center">
+        <div class="w-1/2 flex justify-center">
+            <img src="{{ dish.image }}" class="w-5/6 h-auto object-cover rounded-lg">
+        </div>
+        <div class="p-5 flex-1">
+            <h1 class="text-3xl font-bold">{{ dish.name }}</h1>
+            <p class="text-gray-400 mt-2">{{ dish.description }}</p>
+            <p class="text-lg font-bold text-red-400 mt-4">Цена: {{ dish.price }} грн</p>
+
+            <h3 class="text-xl font-semibold mt-4">Ингредиенты:</h3>
+            <ul class="list-disc list-inside text-gray-300 mt-2">
+                {% for ingredient in dish.ingredients %}
+                <li>{{ ingredient }}</li>
+                {% endfor %}
+            </ul>
+
+            <div class="mt-6 flex gap-4">
+                <a href="{{ url_for('home') }}"
+                   class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
+                    Добавить в корзину
+                </a>
+                <a href="{{ url_for('home') }}"
+                   class="bg-red-700 text-white px-4 py-2 rounded hover:bg-gray-600 transition">
+                    Назад к меню
+                </a>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
