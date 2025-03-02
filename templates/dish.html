@@ -1,39 +1,33 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ dish.name }}</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-800 text-white p-6">
-    <div class="max-w-4xl mx-auto bg-gray-900 rounded-lg overflow-hidden flex items-center">
-        <div class="w-1/2 flex justify-center">
-            <img src="{{ dish.image }}" class="w-5/6 h-auto object-cover rounded-lg">
-        </div>
-        <div class="p-5 flex-1">
-            <h1 class="text-3xl font-bold">{{ dish.name }}</h1>
-            <p class="text-gray-400 mt-2">{{ dish.description }}</p>
-            <p class="text-lg font-bold text-red-400 mt-4">Цена: {{ dish.price }} грн</p>
+{% extends 'base.html' %}
 
-            <h3 class="text-xl font-semibold mt-4">Ингредиенты:</h3>
-            <ul class="list-disc list-inside text-gray-300 mt-2">
-                {% for ingredient in dish.ingredients %}
-                <li>{{ ingredient }}</li>
-                {% endfor %}
-            </ul>
+{% block title %}{{ dish.name }}{% endblock %}
 
-            <div class="mt-6 flex gap-4">
-                <a href="{{ url_for('home') }}"
-                   class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
-                    Добавить в корзину
-                </a>
-                <a href="{{ url_for('home') }}"
-                   class="bg-red-700 text-white px-4 py-2 rounded hover:bg-gray-600 transition">
-                    Назад к меню
-                </a>
+{% block content %}
+<div class="max-w-6xl mx-auto bg-gray-900 rounded-lg overflow-hidden flex items-center p-10">
+    <div class="w-1/2 flex justify-center">
+        <img src="{{ dish.image }}" class="w-full h-auto object-cover rounded-lg">
+    </div>
+    <div class="p-10 flex-1">
+        <h1 class="text-4xl font-bold">{{ dish.name }}</h1>
+        <p class="text-gray-400 mt-3 text-xl">{{ dish.description }}</p>
+        <p class="text-2xl font-bold text-red-400 mt-5">Цена: {{ dish.price }} грн</p>
 
-            </div>
+        <h3 class="text-2xl font-semibold mt-5">Ингредиенты:</h3>
+        <ul class="list-disc list-inside text-gray-300 mt-3 text-lg">
+            {% for ingredient in dish.ingredients %}
+            <li>{{ ingredient }}</li>
+            {% endfor %}
+        </ul>
+
+        <div class="mt-8 flex gap-5">
+            <a href="#" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition text-lg">
+                Добавить в корзину
+            </a>
+            <a href="{{ url_for('home') }}"
+               class="bg-red-700 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition text-lg">
+                Назад к меню
+            </a>
         </div>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}
