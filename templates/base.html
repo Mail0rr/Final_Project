@@ -4,29 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Menu{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-800 text-white">
+
 <header class="bg-gray-900 text-white py-6 px-9 flex justify-between items-center fixed top-0 left-0 right-0 z-50">
     <a href="{{ url_for('home') }}" class="text-3xl font-bold">Asian Restaurant</a>
     <nav>
-        <ul class="flex gap-6">
-            <li><a href="{{ url_for('home') }}" class="text 2xl hover:text-white-400">🏠Home🏠</a></li>
-            <li><a href="{{ url_for('home') }}"  class="text 2xl hover:text-white-400">📒Menu📒</a></li>
-            <li><a href="#" class="text 2xl hover:text-white-400">🛒Basket🛒</a></li>
+        <ul class="flex gap-6 relative">
+            <li>
+                <a href="{{ url_for('home') }}" class="text-2xl hover:text-yellow-400">🏠 HOME 🏠</a>
+            </li>
+            <li class="relative group">
+                <a href="#" class="text-2xl flex items-center gap-1 hover:text-yellow-400">📒 MENU 📒</a>
+                <ul class="absolute left-0 mt-2 w-40 bg-gray-900 text-white rounded-lg shadow-lg opacity-0 invisible
+                           group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                    <li><a href="#" class="block px-4 py-2 hover:bg-gray-700">Dishes</a></li>
+                    <li><a href="#" class="block px-4 py-2 hover:bg-gray-700">Drinks</a></li>
+                    <li><a href="#" class="block px-4 py-2 hover:bg-gray-700">Desserts</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#" class="text-2xl hover:text-yellow-400">🛒 BASKET 🛒</a>
+            </li>
         </ul>
     </nav>
 </header>
+
 <style>
     body {
-        background-image: url('https://zastavki.gas-kvas.com/uploads/posts/2024-06/zastavki-gas-kvas-com-7awv-p-zastavki-v-kitaiskom-stile-1.jpg');
+        background-image: url('https://zastavki.gas-kvas.com/uploads/posts/2024-06/zastavki-gas-kvas-com-7awv-p-zastavki-v-kitaiskom-stиле-1.jpg');
         background-attachment: fixed;
         background-size: cover;
     }
 </style>
+
 <main class="pt-20">
     {% block content %}{% endblock %}
 </main>
+
 </body>
 </html>

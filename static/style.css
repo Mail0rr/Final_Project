@@ -18,7 +18,7 @@ header {
     top: 0;
     left: 0;
     right: 0;
-    background: #111; /* Сделал темнее, чтобы кнопки лучше смотрелись */
+    background: #111;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -46,20 +46,32 @@ header nav ul li {
     position: relative;
 }
 
+nav ul li ul {
+    position: absolute;
+    left: 0;
+    width: 180px;
+    background: fff;
+}
+
+nav ul li ul li {
+    width: 100%;
+    border: 1px solid rgba(0,0,0,.1);
+}
+
 header nav ul li a {
-    padding: 10px 20px; /* Оставляем прежний размер */
-    color: #fff; /* Стандартный цвет текста */
+    padding: 10px 20px;
+    color: #fff;
     font-size: 18px;
     display: block;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border-radius: 8px; /* Делаем фон округлым */
+    border-radius: 8px;
     transition: all 0.3s ease-in-out;
 }
 
 header nav ul li a:hover {
-    background: #f0f0f0;  /* Светло-серый фон */
-    color: #333;          /* Тёмно-серый/чёрный текст */
+    background: #f0f0f0;
+    color: #333;
 }
 
 
