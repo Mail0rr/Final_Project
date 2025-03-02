@@ -7,6 +7,18 @@ app = Flask(__name__)
 def home():
     return render_template("index.html", dishes=dishes)
 
+@app.route("/")
+def home():
+    return render_template("index.html", dishes=dishes)
+
+@app.route("/")
+def home():
+    return render_template("index.html", dishes=dishes)
+
+@app.route("/")
+def home():
+    return render_template("index.html", dishes=dishes)
+
 @app.route("/dish/<int:dish_id>/")
 def dish_detail(dish_id):
     dish = next((d for d in dishes if d["id"] == dish_id), None)

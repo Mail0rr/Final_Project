@@ -1,5 +1,4 @@
 dishes = [
-
     {
         "id": 1,
         "name": "Рамен",
@@ -192,5 +191,138 @@ dishes = [
         "price": 270,
         "ingredients": ["Тесто", "Свинина", "Бульон", "Имбирь", "Зелёный лук"]
     }
+]
 
+drinks = [
+    {
+        "id": 1,
+        "name": "Зелёный чай",
+        "image": "https://www.asiantimes.com.au/wp-content/uploads/2021/08/GreenTea.jpg",
+        "description": "Традиционный китайский зелёный чай.",
+        "price": 150,
+        "ingredients": ["Чайные листья"]
+    },
+    {
+        "id": 2,
+        "name": "Чай матча",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/7/74/Matcha_tea_ceremony_1.jpg",
+        "description": "Японский порошковый зелёный чай с характерным горьковатым вкусом.",
+        "price": 200,
+        "ingredients": ["Порошок матча", "Вода"]
+    },
+    {
+        "id": 3,
+        "name": "Таро латте",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/5/53/Taro_Latte.jpg",
+        "description": "Напиток на основе картофеля таро с молоком и сахаром.",
+        "price": 250,
+        "ingredients": ["Таро", "Молоко", "Сахар"]
+    },
+    {
+        "id": 4,
+        "name": "Кола",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/0/07/Coca-Cola_Logo_2023.png",
+        "description": "Популярный газированный напиток с характерным вкусом.",
+        "price": 120,
+        "ingredients": ["Вода", "Сахар", "Газ", "Карамель"]
+    },
+    {
+        "id": 5,
+        "name": "Айс-ти",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Iced_tea_in_glass.jpg",
+        "description": "Холодный чай с добавлением лимона и мяты.",
+        "price": 180,
+        "ingredients": ["Чай", "Лимон", "Мята", "Сахар"]
+    },
+    {
+        "id": 6,
+        "name": "Лимонад",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/3/36/Lemonade_with_ice.jpg",
+        "description": "Освежающий напиток из лимона с сахаром и водой.",
+        "price": 150,
+        "ingredients": ["Лимон", "Сахар", "Вода"]
+    },
+    {
+        "id": 7,
+        "name": "Милкшейк с клубникой",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Strawberry_milkshake.jpg",
+        "description": "Молочный коктейль с клубникой и ванильным вкусом.",
+        "price": 250,
+        "ingredients": ["Молоко", "Клубника", "Ваниль"]
+    },
+    {
+        "id": 8,
+        "name": "Кокосовая вода",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Coconut_water.jpg",
+        "description": "Освежающий напиток из натуральной кокосовой воды.",
+        "price": 200,
+        "ingredients": ["Кокосовая вода"]
+    }
+]
+
+desserts = [
+    {
+        "id": 1,
+        "name": "Мочико",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Mochi_Dessert.jpg",
+        "description": "Японский десерт из клейкого риса с различными начинками.",
+        "price": 180,
+        "ingredients": ["Клейкий рис", "Фрукты", "Фасоль"]
+    },
+    {
+        "id": 2,
+        "name": "Кимчи-чизкейк",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/3/39/Kimchi_cheesecake.jpg",
+        "description": "Кимчи с сырым чесноком и традиционным чизкейком.",
+        "price": 350,
+        "ingredients": ["Кимчи", "Сыр", "Яйца", "Сахар"]
+    },
+    {
+        "id": 3,
+        "name": "Лунный торт",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Moon_cake.jpg",
+        "description": "Китайский торт с плотной начинкой, часто подаётся на праздник Лунного Нового года.",
+        "price": 250,
+        "ingredients": ["Мука", "Джем", "Паста из бобов"]
+    },
+    {
+        "id": 4,
+        "name": "Клённый пирог",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/2/22/Maple_pie.jpg",
+        "description": "Американский десерт с клённым сиропом.",
+        "price": 300,
+        "ingredients": ["Клённый сироп", "Мука", "Яйца"]
+    },
+    {
+        "id": 5,
+        "name": "Каша из кокоса",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/6/67/Coconut_porridge.jpg",
+        "description": "Традиционное кокосовое блюдо с рисом и сахаром.",
+        "price": 200,
+        "ingredients": ["Кокос", "Рис", "Сахар"]
+    },
+    {
+        "id": 6,
+        "name": "Тарт с манго",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Mango_Tart.jpg",
+        "description": "Десерт с манго и сладким кремом в хрустящей корочке.",
+        "price": 280,
+        "ingredients": ["Манго", "Крем", "Тесто"]
+    },
+    {
+        "id": 7,
+        "name": "Сезамовые печенья",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/2/29/Sesame_cookies.jpg",
+        "description": "Китайские печенья с сезамом.",
+        "price": 150,
+        "ingredients": ["Сезам", "Мука", "Масло", "Сахар"]
+    },
+    {
+        "id": 8,
+        "name": "Пудинг с чаем матча",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Matcha_Pudding.jpg",
+        "description": "Нежный пудинг с добавлением порошка матча.",
+        "price": 250,
+        "ingredients": ["Порошок матча", "Молоко", "Сахар"]
+    }
 ]

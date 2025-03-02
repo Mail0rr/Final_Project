@@ -3,22 +3,25 @@
 {% block title %}Меню{% endblock %}
 
 {% block content %}
-
-<h1 class="text-5xl font-bold text-center mb-8">Меню</h1>
-
-<div class="space-y-10 max-w-4xl mx-auto">
-    {% for dish in dishes %}
-    <div class="bg-gray-900 rounded-lg flex items-center p-8">
-        <div class="w-1/2">
-            <img src="{{ dish.image }}" class="w-full h-80 object-cover rounded-lg">
+<div class="pb-80">
+    <h1 class="text-5xl font-bold text-center mb-8 mt-10">Menu</h1>
+        <div class="space-y-10 max-w-4xl mx-auto">
+            {% for dish in dishes %}
+            <div class="bg-gray-900 rounded-lg flex items-center p-8 hover:-translate-y-2 transition transform duration-300">
+                <div class="w-1/2">
+                    <img src="{{ dish.image }}" class="w-full h-80 object-cover rounded-lg">
+                </div>
+                <div class="ml-8 flex-1">
+                    <h2 class="text-3xl font-semibold">{{ dish.name }}</h2>
+                    <p class="text-gray-400 mt-2 text-lg">{{ dish.description }}</p>
+                    <p class="text-xl font-bold text-red-400 mt-3">{{ dish.price }} грн</p>
+                    <a href="{{ url_for('dish_detail', dish_id=dish.id) }}"
+                       class="inline-block mt-3 bg-red-600 text-white px-4 py-2 rounded-lg transition duration-300 hover:opacity-80">
+                       Подробнее
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-        <div class="ml-8 flex-1">
-            <h2 class="text-3xl font-semibold">{{ dish.name }}</h2>
-            <p class="text-gray-400 mt-2 text-lg">{{ dish.description }}</p>
-            <p class="text-xl font-bold text-red-400 mt-3">{{ dish.price }} грн</p>
-            <a href="{{ url_for('dish_detail', dish_id=dish.id) }}" class="inline-block  mt-3 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition">Подробнее</a>
-        </div>
-    </div>
-    {% endfor %}
+    {% endblock %}
 </div>
-{% endblock %}

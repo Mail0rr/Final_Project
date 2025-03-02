@@ -3,22 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Меню{% endblock %}</title>
+    <title>{% block title %}Menu{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-800 text-white">
-<header class="bg-gray-900 text-white py-4 px-8 flex justify-between items-center fixed top-0 left-0 right-0 z-50">
-    <a href="{{ url_for('home') }}" class="text-2xl font-bold">LOGO</a>
+<header class="bg-gray-900 text-white py-6 px-9 flex justify-between items-center fixed top-0 left-0 right-0 z-50">
+    <a href="{{ url_for('home') }}" class="text-3xl font-bold">Asian Restaurant</a>
     <nav>
         <ul class="flex gap-6">
-            <li><a href="{{ url_for('home') }}" class="hover:text-red-400">Главная</a></li>
-            <li><a href="#" class="hover:text-red-400">О нас</a></li>
-            <li><a href="#" class="hover:text-red-400">Контакты</a></li>
+            <li><a href="{{ url_for('home') }}" class="text 2xl hover:text-white-400">🏠Home🏠</a></li>
+            <li><a href="{{ url_for('home') }}"  class="text 2xl hover:text-white-400">📒Menu📒</a></li>
+            <li><a href="#" class="text 2xl hover:text-white-400">🛒Basket🛒</a></li>
         </ul>
     </nav>
 </header>
-
+<style>
+    body {
+        background-image: url('https://zastavki.gas-kvas.com/uploads/posts/2024-06/zastavki-gas-kvas-com-7awv-p-zastavki-v-kitaiskom-stile-1.jpg');
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
 <main class="pt-20">
     {% block content %}{% endblock %}
 </main>
