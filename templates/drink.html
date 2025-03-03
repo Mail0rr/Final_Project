@@ -1,21 +1,20 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ dish.name }}{% endblock %}
+{% block title %}{{ drink.name }}{% endblock %}
 
 {% block content %}
-
 <div class="max-w-6xl mx-auto bg-gray-900 rounded-lg overflow-hidden flex items-center p-10 mt-10">
     <div class="w-1/2 flex justify-center">
-        <img src="{{ dish.image }}" class="w-full h-auto object-cover rounded-lg">
+        <img src="{{ drink.image }}" class="w-full h-auto object-cover rounded-lg">
     </div>
     <div class="p-10 flex-1">
-        <h1 class="text-4xl font-bold">{{ dish.name }}</h1>
-        <p class="text-gray-400 mt-3 text-xl">{{ dish.description }}</p>
-        <p class="text-2xl font-bold text-red-400 mt-5">Цена: {{ dish.price }} грн</p>
+        <h1 class="text-4xl font-bold">{{ drink.name }}</h1>
+        <p class="text-gray-400 mt-3 text-xl">{{ drink.description }}</p>
+        <p class="text-2xl font-bold text-red-400 mt-5">Цена: {{ drink.price }} грн</p>
 
         <h3 class="text-2xl font-semibold mt-5">Ингредиенты:</h3>
         <ul class="list-disc list-inside text-gray-300 mt-3 text-lg">
-            {% for ingredient in dish.ingredients %}
+            {% for ingredient in drink.ingredients %}
             <li> {{ ingredient }}</li>
             {% endfor %}
         </ul>
