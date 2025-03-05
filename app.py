@@ -7,27 +7,11 @@ all_items = dishes + drinks + desserts
 
 @app.route("/")
 def home():
-    return render_template("index.html")
-
-@app.route("/basket")
-def basket():
-    return render_template("basket.html")
-
-@app.route("/menu/")
-def menu():
     return render_template("menu.html", dishes=dishes, drinks=drinks, desserts=desserts)
 
-@app.route("/menu/dishes/")
-def dishes_list():
-    return render_template("only_dishes.html", dishes=dishes)
-
-@app.route("/menu/drinks/")
-def drinks_list():
-    return render_template("only_drinks.html", drinks=drinks)
-
-@app.route("/menu/desserts/")
-def desserts_list():
-    return render_template("only_desserts.html", desserts=desserts)
+@app.route("/order/")
+def order():
+    return render_template("order.html")
 
 @app.route("/dish/<int:dish_id>/")
 def dish_detail(dish_id):
