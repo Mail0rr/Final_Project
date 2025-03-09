@@ -18,7 +18,7 @@
         <nav>
             <ul class="flex gap-6 relative">
                 <li>
-                    <a href="#" class="text-2xl hover:text-yellow-400">🚪 SIGN UP</a>
+                    <a href="#" id="registerButton" class="text-2xl hover:text-yellow-400">🚪 SIGN UP</a>
                 </li>
                 <li class="relative group">
                     <a href="/" class="text-2xl flex items-center gap-1 hover:text-yellow-400">📒 MENU </a>
@@ -35,6 +35,32 @@
             </ul>
         </nav>
     </header>
+
+    <div id="registerModal" class="fixed inset-0 flex items-center justify-center bg-stone-300 bg-opacity-20 backdrop-blur-none hidden z-50 transition-transform duration-300 scale-0">
+        <div class="bg-gray-800 text-white p-9 rounded-3xl shadow-2xl w-[36rem] border border-gray-700 bg-opacity-95">
+            <div class="flex justify-between items-center border-b border-stone-300 pb-6">
+                <h2 class="text-2xl font-bold">🚪 Регистрация</h2>
+                <button id="closeRegister" class="text-red-500 text-4xl">&times;</button>
+            </div>
+            <div class="mt-6 p-3">
+                <form action="/register" method="POST" class="flex flex-col gap-4">
+                    <input type="text" name="username" placeholder="👤 Логин" required class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                    <div id="phoneContainer" class="relative w-full">
+                    <div id="phonePlaceholder" class="w-full bg-gray-700 text-gray-400 px-4 py-3 rounded-lg cursor-pointer">📱 Номер телефона</div>
+                    <input type="tel" name="phone" id="phoneInput" placeholder="+380 (__) ___ __ __" required class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 hidden">
+                    </div>
+                    <input type="password" name="password" placeholder="🔑 Пароль" required class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                    <button type="submit" class="w-full bg-lime-600 text-white px-9 py-4 rounded-xl transition duration-300 hover:opacity-80">
+                        Зарегистрироваться
+                    </button>
+                </form>
+            </div>
+            <div class="border-t border-gray-600 pt-6 text-center">
+                <p class="text-gray-400">Уже есть аккаунт? <a href="#" class="text-yellow-400 hover:underline">Войти</a></p>
+            </div>
+        </div>
+    </div>
+
 
     <div id="basketModal" class="fixed inset-0 flex items-center justify-center bg-stone-300 bg-opacity-20 backdrop-blur-none hidden z-50 transition-transform duration-300 scale-0">
         <div class="bg-gray-800 text-white p-9 rounded-3xl shadow-2xl w-[36rem] border border-gray-700 bg-opacity-95">
@@ -70,6 +96,7 @@
     <script src="{{ url_for('static', filename='js/order.js') }}"></script>
     <script src="{{ url_for('static', filename='js/basket.js') }}"></script>
     <script src="{{ url_for('static', filename='js/switch.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/register.js') }}"></script>
 </body>
 
 </html>
