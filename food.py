@@ -497,7 +497,7 @@ desserts = [
         "id": 14,
         "name": "Чизкейк Нью-Йорк",
         "image": "https://yasensvit.ua/uploads/recipes/prev/639ca77703b3a.jpg",
-        "description": "Воздушный чизкейк с соевой плёнкой юба.",
+        "description": "Классический воздушный чизкейк знакомый каждому.",
         "price": 290,
         "ingredients": ["Сливочный сыр", "Яйца", "Сахар"]
     },
