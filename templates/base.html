@@ -21,12 +21,12 @@
                     <a href="#" id="registerButton" class="text-2xl hover:text-yellow-400">🚪 SIGN UP</a>
                 </li>
                 <li class="relative group">
-                    <a href="/" class="text-2xl flex items-center gap-1 hover:text-yellow-400">📒 MENU </a>
+                    <a href="/menu" class="text-2xl flex items-center gap-1 hover:text-yellow-400">📒 MENU </a>
                     <ul class="absolute left-0 mt-2 w-40 bg-gray-900 text-white rounded-lg shadow-lg opacity-0 invisible
                                group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                        <li><a href="#dish" class="block px-4 py-2 hover:bg-gray-700">Dishes</a></li>
-                        <li><a href="#drink" class="block px-4 py-2 hover:bg-gray-700">Drinks</a></li>
-                        <li><a href="#dessert" class="block px-4 py-2 hover:bg-gray-700">Desserts</a></li>
+                        <li><a href="/menu/#dish" class="block px-4 py-2 hover:bg-gray-700">Dishes</a></li>
+                        <li><a href="/menu/#drink" class="block px-4 py-2 hover:bg-gray-700">Drinks</a></li>
+                        <li><a href="/menu/#dessert" class="block px-4 py-2 hover:bg-gray-700">Desserts</a></li>
                     </ul>
                 </li>
                 <li>
@@ -81,6 +81,18 @@
         </div>
     </div>
 
+    <main class="pt-20 flex-grow">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-lg">© 2025 Азиатский ресторан. Все права защищены.</p>
+            <p class="mt-4 text-sm">Контактная информация: info@restaurant.com</p>
+            <p class="mt-2 text-sm">Адрес: ул. Хзнеиграл, 123, Город: Киев</p>
+        </div>
+    </footer>
+
     <style>
         body {
             background-image: url('/static/images/background.jpg');
@@ -89,9 +101,6 @@
         }
     </style>
 
-    <main class="pt-20">
-        {% block content %}{% endblock %}
-    </main>
 
     <script src="{{ url_for('static', filename='js/order.js') }}"></script>
     <script src="{{ url_for('static', filename='js/basket.js') }}"></script>

@@ -7,7 +7,7 @@ all_items = dishes + drinks + desserts
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("home.html")
 
 @app.route("/menu/")
 def menu():

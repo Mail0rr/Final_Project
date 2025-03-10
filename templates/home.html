@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<div class="pb-80 text-center">
+    <h1 class="text-7xl font-bold text-center mb-12 mt-12">Добро пожаловать в Asian Restaurant</h1>
+
+    <p class="text-2xl text-gray-300 max-w-4xl mx-auto">Мир изысканной азиатской еды</p>
+
+    <div class="mt-12 flex justify-center">
+        <a href="/menu"
+           class="inline-block bg-rose-600 text-white px-9 py-6 text-2xl rounded-lg transition duration-300 hover:bg-rose-700">
+            Перейти в меню
+        </a>
+    </div>
+
+    <div class="mt-16 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+        <a href="/menu/#dish" class="bg-gray-900 p-8 rounded-lg text-center hover:-translate-y-2 transition transform duration-300 block">
+            <h2 class="text-4xl font-semibold text-yellow-400">🍣 Блюда</h2>
+            <p class="text-gray-400 mt-3 text-xl">Традиционные и современные рецепты Азии.</p>
+        </a>
+        <a href="/menu/#drink" class="bg-gray-900 p-8 rounded-lg text-center hover:-translate-y-2 transition transform duration-300 block">
+            <h2 class="text-4xl font-semibold text-yellow-400">🍵 Напитки</h2>
+            <p class="text-gray-400 mt-3 text-xl">Освежающие чаи и экзотические коктейли.</p>
+        </a>
+        <a href="/menu/#dessert" class="bg-gray-900 p-8 rounded-lg text-center hover:-translate-y-2 transition transform duration-300 block">
+            <h2 class="text-4xl font-semibold text-yellow-400">🍰 Десерты</h2>
+            <p class="text-gray-400 mt-3 text-xl">Сладкие восточные, и не только, угощения.</p>
+        </a>
+    </div>
+
+    <div class="mt-16">
+        <h2 class="text-4xl font-bold text-center text-yellow-400 mb-8">Популярные опции</h2>
+        <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+
+        <div class="bg-gray-900 p-6 rounded-lg text-center hover:-translate-y-2 transition transform duration-300">
+            <img src="https://static.insales-cdn.com/images/articles/1/1729/6629057/delicious-ramen-on-dark-surface.jpg" alt="Рамен" class="w-full h-48 object-cover rounded-md mb-4">
+            <h3 class="text-4xl font-semibold">Рамен</h3>
+            <p class="text-gray-400 mt-3 text-xl">Японский суп с пшеничной лапшой, мясом и овощами.</p>
+            <p class="text-2xl font-bold text-red-400 mt-4 mb-6">380 грн</p>
+            <a href="#" class="bg-lime-600 text-white px-6 py-3 rounded-lg transition duration-300 hover:opacity-80 mt-4">
+                Добавить в корзину
+            </a>
+        </div>
+
+        <div class="bg-gray-900 p-6 rounded-lg text-center hover:-translate-y-2 transition transform duration-300">
+            <img src="https://noa.ua/wp-content/uploads/2023/11/kombo-sajt-eksp.jpg" alt="Суши" class="w-full h-48 object-cover rounded-md mb-4">
+            <h3 class="text-4xl font-semibold">Суши</h3>
+            <p class="text-gray-400 mt-3 text-xl">Рис с морепродуктами, завернутый в нори.</p>
+            <p class="text-2xl font-bold text-red-400 mt-4 mb-6">520 грн</p>
+            <a href="#" class="bg-lime-600 text-white px-6 py-3 rounded-lg transition duration-300 hover:opacity-80 mt-4">
+                Добавить в корзину
+            </a>
+        </div>
+
+        <div class="bg-gray-900 p-6 rounded-lg text-center hover:-translate-y-2 transition transform duration-300">
+            <img src="https://topfood.club/uploads/cropped/2023-11-01-6lpqjn-delicious-asian-udon-dish-with-vegetables-mushroo-2023-06-29-18-34-41-utc_1698834156.jpg" alt="Удон" class="w-full h-48 object-cover rounded-md mb-4">
+            <h3 class="text-4xl font-semibold">Удон</h3>
+            <p class="text-gray-400 mt-3 text-xl">Японская толстая лапша с бульоном и начинками.</p>
+            <p class="text-2xl font-bold text-red-400 mt-4 mb-6">340 грн</p>
+            <a href="#" class="bg-lime-600 text-white px-6 py-3 rounded-lg transition duration-300 hover:opacity-80 mt-4">
+                Добавить в корзину
+            </a>
+        </div>
+
+        <div class="bg-gray-900 p-6 rounded-lg text-center hover:-translate-y-2 transition transform duration-300">
+            <img src="https://chaynyy-list.ru/upload/medialibrary/9e6/dfswparq22pf68zfp2fn5w8pz52jd9df.jpg" alt="Зелёный чай" class="w-full h-48 object-cover rounded-md mb-4">
+            <h3 class="text-4xl font-semibold">Зелёный чай</h3>
+            <p class="text-gray-400 mt-3 text-xl">Традиционный китайский зелёный чай.</p>
+            <p class="text-2xl font-bold text-red-400 mt-4 mb-6">120 грн</p>
+            <a href="#" class="bg-lime-600 text-white px-6 py-3 rounded-lg transition duration-300 hover:opacity-80 mt-4">
+                Добавить в корзину
+            </a>
+        </div>
+
+        <div class="bg-gray-900 p-6 rounded-lg text-center hover:-translate-y-2 transition transform duration-300">
+            <img src="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_65faef7bd0149557dde0c63f_65fd5d31d967c33f449b12d2/scale_1200" alt="Кола" class="w-full h-48 object-cover rounded-md mb-4">
+            <h3 class="text-4xl font-semibold">Кола</h3>
+            <p class="text-gray-400 mt-3 text-xl">Популярный газированный напиток с характерным вкусом.</p>
+            <p class="text-2xl font-bold text-red-400 mt-4 mb-6">80 грн</p>
+            <a href="#" class="bg-lime-600 text-white px-6 py-3 rounded-lg transition duration-300 hover:opacity-80 mt-4">
+                Добавить в корзину
+            </a>
+        </div>
+
+        <div class="bg-gray-900 p-6 rounded-lg text-center hover:-translate-y-2 transition transform duration-300">
+            <img src="https://shuba.life/static/content/thumbs/1344x672/8/41/iy6x6m---c2x1x50px50p-up--268179d0e90352f727edac5e743ea418.jpg" alt="Сакэ" class="w-full h-48 object-cover rounded-md mb-4">
+            <h3 class="text-4xl font-semibold">Сакэ</h3>
+            <p class="text-gray-400 mt-3 text-xl">Традиционное японское рисовое вино.</p>
+            <p class="text-2xl font-bold text-red-400 mt-4 mb-6">140 грн</p>
+            <a href="#" class="bg-lime-600 text-white px-6 py-3 rounded-lg transition duration-300 hover:opacity-80 mt-4">
+                Добавить в корзину
+            </a>
+        </div>
+
+        <div class="bg-gray-900 p-6 rounded-lg text-center hover:-translate-y-2 transition transform duration-300">
+            <img src="https://static.nv.ua/shared/system/MediaPhoto/images/000/488/475/original/9af94ffe6dcea45369a8ff50d0ffa1da.png?q=85&stamp=20240517140603&f=jpg" alt="Моти" class="w-full h-48 object-cover rounded-md mb-4">
+            <h3 class="text-4xl font-semibold">Классические моти</h3>
+            <p class="text-gray-400 mt-3 text-xl">Японский десерт из клейкого риса с различными начинками</p>
+            <p class="text-2xl font-bold text-red-400 mt-4 mb-6">180 грн</p>
+            <a href="#" class="bg-lime-600 text-white px-6 py-3 rounded-lg transition duration-300 hover:opacity-80 mt-4">
+                Добавить в корзину
+            </a>
+        </div>
+
+        <div class="bg-gray-900 p-6 rounded-lg text-center hover:-translate-y-2 transition transform duration-300">
+            <img src="https://bit.ua/wp-content/uploads/2016/05/Screenshot_1.jpg" alt="Вафли с мороженым" class="w-full h-48 object-cover rounded-md mb-4">
+            <h3 class="text-4xl font-semibold">Вафли с мороженым</h3>
+            <p class="text-gray-400 mt-3 text-xl">Десерт из вафель и мороженого с сладкими топпингами</p>
+            <p class="text-2xl font-bold text-red-400 mt-4 mb-6">270 грн</p>
+            <a href="#" class="bg-lime-600 text-white px-6 py-3 rounded-lg transition duration-300 hover:opacity-80 mt-4">
+                Добавить в корзину
+            </a>
+        </div>
+
+        <div class="bg-gray-900 p-6 rounded-lg text-center hover:-translate-y-2 transition transform duration-300">
+            <img src="https://yasensvit.ua/uploads/recipes/prev/639ca77703b3a.jpg" alt="Чизкейк Нью-Йорк" class="w-full h-48 object-cover rounded-md mb-4">
+            <h3 class="text-4xl font-semibold">Чизкейк Нью-Йорк</h3>
+            <p class="text-gray-400 mt-3 text-xl">Классический воздушный чизкейк знакомый каждому</p>
+            <p class="text-2xl font-bold text-red-400 mt-4 mb-6">290 грн</p>
+            <a href="#" class="bg-lime-600 text-white px-6 py-3 rounded-lg transition duration-300 hover:opacity-80 mt-4">
+                Добавить в корзину
+            </a>
+        </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
