@@ -9,6 +9,18 @@
 </head>
 
 <body class="bg-gray-800 text-white flex flex-col min-h-screen">
+        <div class="fixed top-20 left-6 z-50 mt-4">
+            <div class="flex items-center gap-3 bg-gray-800 px-6 py-3 rounded-xl shadow-lg border border-gray-900">
+                <span class="text-white text-sm font-medium hover:text-yellow-400">RU</span>
+                <button onclick="toggleCardStyle()"
+                        class="relative inline-flex h-8 w-16 items-center rounded-full bg-gray-600 transition duration-300 focus:outline-none">
+                  <span class="sr-only">Switch language</span>
+                  <span id="toggle-button"
+                        class="absolute left-1 w-7 h-7 bg-primary bg-gray-800 rounded-full shadow-md transition-all duration-300"></span>
+                </button>
+                <span class="text-white text-sm font-medium hover:text-yellow-400">UKR</span>
+            </div>
+        </div>
 
     <header class="bg-gray-900 text-white py-6 px-9 flex justify-between items-center fixed top-0 left-0 right-0 z-50">
         <a href="{{ url_for('home') }}" class="text-3xl font-bold">Asian Restaurant</a>
@@ -19,7 +31,7 @@
             <ul class="flex gap-6 relative">
                 <li><a href="#" id="registerButton" class="text-2xl hover:text-yellow-400">🚪 SIGN UP</a></li>
                 <li class="relative group">
-                    <a href="/menu" class="text-2xl flex items-center gap-1 hover:text-yellow-400">📒 MENU </a>
+                    <a href="/menu" class="text-2xl flex items-center gap-1 hover:text-yellow-400">📖 MENU </a>
                     <ul class="absolute left-0 mt-2 w-40 bg-gray-900 text-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                         <li><a href="/menu/#dish" class="block px-4 py-2 hover:bg-gray-700">Dishes</a></li>
                         <li><a href="/menu/#drink" class="block px-4 py-2 hover:bg-gray-700">Drinks</a></li>
@@ -27,7 +39,7 @@
                     </ul>
                 </li>
                 <li><a href="#" id="ordersButton" class="text-2xl hover:text-yellow-400">📜 MY ORDERS</a></li>
-                <li><a href="#" id="basketButton" class="text-2xl hover:text-yellow-400">🛒 BASKET </a></li>
+                <li><a href="#" id="basketButton" class="text-2xl hover:text-yellow-400">🛒 CART </a></li>
             </ul>
         </nav>
     </header>
