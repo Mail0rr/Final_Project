@@ -17,7 +17,7 @@ dishes = [
     },
     {
         "id": 3,
-        "name": "Фо Бо",
+        "name": "Фо бо",
         "image": "https://dishmagazine.com/wp-content/uploads/2024/11/pho-bo-soup-1300x1234.jpg",
         "description": "Вьетнамский суп с рисовой лапшой и говядиной.",
         "price": 340,
@@ -25,7 +25,7 @@ dishes = [
     },
     {
         "id": 4,
-        "name": "Пад Тай",
+        "name": "Пад тай",
         "image": "https://dopuza.ru/wp-content/uploads/2023/08/lapsha-pad-taj-s-kuricej.jpg",
         "description": "Тайская жареная лапша с креветками и орехами.",
         "price": 370,
@@ -41,7 +41,7 @@ dishes = [
     },
     {
         "id": 6,
-        "name": "Том Ям",
+        "name": "Том ям",
         "image": "https://the-challenger.ru/wp-content/uploads/2021/06/depositphotos_41260071_s-2019-600x600.jpeg",
         "description": "Острый тайский суп с креветками и кокосовым молоком.",
         "price": 400,
@@ -81,7 +81,7 @@ dishes = [
     },
     {
         "id": 11,
-        "name": "Чау Мейн",
+        "name": "Чау мейн",
         "image": "https://static.insales-cdn.com/r/fKhEAS2j0ZI/rs:fit:1000:1000:1/plain/images/products/1/5849/896308953/1404429319.jpg@jpg",
         "description": "Жареная китайская лапша с мясом и овощами.",
         "price": 350,
@@ -89,7 +89,7 @@ dishes = [
     },
     {
         "id": 12,
-        "name": "Тофу Ма По",
+        "name": "Тофу ма по",
         "image": "https://avatars.dzeninfra.ru/get-zen_doc/1590748/pub_64fdf6362d85f43c1e580f15_64fdf6905921b358fd1fdcf9/scale_1200",
         "description": "Китайское блюдо из тофу с пряным соусом.",
         "price": 300,
@@ -105,7 +105,7 @@ dishes = [
     },
     {
         "id": 14,
-        "name": "Суп Мисо",
+        "name": "Суп мисо",
         "image": "https://img.povar.ru/mobile/24/fc/dd/a4/yaponskii_sup_miso-651768.JPG",
         "description": "Японский суп на основе пасты мисо.",
         "price": 260,
@@ -113,7 +113,7 @@ dishes = [
     },
     {
         "id": 15,
-        "name": "Бан Ми",
+        "name": "Бан ми",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU8ImrQ6nAEa2jdJ2ybLswGxUDhajHdYNnzA&s",
         "description": "Вьетнамский сэндвич с мясом и овощами.",
         "price": 320,
@@ -137,7 +137,7 @@ dishes = [
     },
     {
         "id": 18,
-        "name": "Кунг Пао",
+        "name": "Кунг пао",
         "image": "https://cdn.lifehacker.ru/wp-content/uploads/2024/07/105_1720014494.jpg",
         "description": "Китайская курица с арахисом и острым соусом.",
         "price": 320,
@@ -153,7 +153,7 @@ dishes = [
     },
     {
         "id": 20,
-        "name": "Наси Горенг",
+        "name": "Наси горенг",
         "image": "https://avatars.dzeninfra.ru/get-zen_doc/10148438/pub_64b29a060adc8743db4964bc_64b29ba6cd6be910996447be/scale_1200",
         "description": "Индонезийский жареный рис с яйцом и специями.",
         "price": 320,
@@ -161,7 +161,7 @@ dishes = [
     },
     {
         "id": 21,
-        "name": "Карри Кацу",
+        "name": "Карри кацу",
         "image": "https://avatars.dzeninfra.ru/get-zen_doc/5289592/pub_6442a1b94f7f264a5a1d9a74_6442a242c7a9750d22860bf4/scale_1200",
         "description": "Японская котлета с рисом и густым карри.",
         "price": 370,
@@ -177,7 +177,7 @@ dishes = [
     },
     {
         "id": 23,
-        "name": "Гунбао Тофу",
+        "name": "Гунбао тофу",
         "image": "https://scontent.fiev24-1.fna.fbcdn.net/v/t1.6435-9/86671076_497434767622485_696872453959319552_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=103&ccb=1-7&_nc_sid=0b6b33&_nc_ohc=3i06wNVA6wYQ7kNvgH1IOI_&_nc_oc=Adi46yIIWUvg9XRDJl9pPeFVwrluayrgBI_IVf257yeSvv_lpV7T5dCN7d0H2RDK-Vk&_nc_zt=23&_nc_ht=scontent.fiev24-1.fna&_nc_gid=AgH7xTu6jF9QnZqZUoBqPUJ&oh=00_AYC2582YmFdi2uRRXJfL2BA4EpFLY9DRHLrQR1RF4QYpqA&oe=67EBB008",
         "description": "Китайское пряное блюдо с тофу и арахисом.",
         "price": 300,
@@ -185,7 +185,7 @@ dishes = [
     },
     {
         "id": 24,
-        "name": "Сяо Лун Бао",
+        "name": "Сяо лун бао",
         "image": "https://img.freepik.com/premium-photo/steamed-pork-soup-dumplings-named-xiao-long-bao-taiwan_315337-7282.jpg",
         "description": "Китайские суповые пельмени на пару.",
         "price": 320,
@@ -249,7 +249,7 @@ dishes = [
     },
     {
         "id": 32,
-        "name": "Хого (Китайский самовар)",
+        "name": "Хого",
         "image": "https://ogohogo.ru/wp-content/uploads/1280-52.jpg",
         "description": "Блюдо, приготовленное в кипящем бульоне прямо на столе.",
         "price": 550,
@@ -399,7 +399,7 @@ desserts = [
     },
     {
         "id": 2,
-        "name": "Сезамовые шарики (Танъюань)",
+        "name": "Сезамовые шарики",
         "image": "https://st.depositphotos.com/3162779/54178/i/450/depositphotos_541783334-stock-photo-tangyuan-chinese-dessert-made-ball.jpg",
         "description": "Китайские сладкие шарики из клейкого риса с начинкой из черного кунжута, подаются с сиропом.",
         "price": 250,
@@ -423,7 +423,7 @@ desserts = [
     },
     {
         "id": 5,
-        "name": "Кокосовый пудинг (Тахо)",
+        "name": "Кокосовый пудинг",
         "image": "https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_67c245a7b8d8360f23e82123_67c247dd4419276b4f918043/scale_1200",
         "description": "Филиппинский десерт с кокосовым пудингом, тапиокой и сиропом из сахара пальмы.",
         "price": 280,
@@ -495,7 +495,7 @@ desserts = [
     },
     {
         "id": 14,
-        "name": "Чизкейк Нью-Йорк",
+        "name": "Чизкейк нью-йорк",
         "image": "https://yasensvit.ua/uploads/recipes/prev/639ca77703b3a.jpg",
         "description": "Классический воздушный чизкейк знакомый каждому.",
         "price": 290,
@@ -511,7 +511,7 @@ desserts = [
     },
     {
         "id": 16,
-        "name": "Японский пудинг (Пурин)",
+        "name": "Японский пудинг",
         "image": "https://cdn.lifehacker.ru/wp-content/uploads/2022/09/shutterstock_2139465649_1664468404-scaled.jpg",
         "description": "Крем-карамель в японском стиле.",
         "price": 230,
