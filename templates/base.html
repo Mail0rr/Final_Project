@@ -7,6 +7,7 @@
     <title>{% block title %}Menu{% endblock %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body class="bg-gray-800 text-white flex flex-col min-h-screen">
@@ -17,10 +18,17 @@
             <nav>
                 <ul class="flex gap-6 items-center">
                     <li>
+                        {% if session.get('user_id') %}
+                        <a href="{{ url_for('logout') }}" class="flex items-center gap-2 text-xl hover:text-yellow-400">
+                            <span class="material-icons text-yellow-500">logout</span>
+                            LOG OUT
+                        </a>
+                        {% else %}
                         <a href="#" id="registerButton" class="flex items-center gap-2 text-xl hover:text-yellow-400">
-                            <img src="{{ url_for('static', filename='images/sign_up.png') }}" alt="Sign Up" class="w-7 h-7">
+                            <span class="material-icons text-yellow-500">login</span>
                             SIGN UP
                         </a>
+                        {% endif %}
                     </li>
                     <li class="relative group">
                         <a href="/menu" class="flex items-center gap-2 text-xl hover:text-yellow-400">
@@ -63,7 +71,7 @@
                 <button id="closeRegister" class="text-red-500 text-4xl">&times;</button>
             </div>
             <div class="mt-6 p-3">
-                <form action="/register" method="POST" class="flex flex-col gap-4">
+                <form id="registerForm" class="flex flex-col gap-4">
                     <input type="text" name="username" placeholder="👤 Логин" required class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400">
                     <div id="phoneContainer" class="relative w-full">
                         <div id="phonePlaceholder" class="w-full bg-gray-700 text-gray-400 px-4 py-3 rounded-lg cursor-pointer">📱 Номер телефона</div>
@@ -88,7 +96,7 @@
                 <button id="closeLogin" class="text-red-500 text-4xl">&times;</button>
             </div>
             <div class="mt-6 p-3">
-                <form action="/login" method="POST" class="flex flex-col gap-4">
+                <form id="loginForm" class="flex flex-col gap-4">
                     <input type="text" name="username" placeholder="👤 Логин" required class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400">
                     <input type="password" name="password" placeholder="🔑 Пароль" required class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400">
                     <button type="submit" class="w-full bg-lime-600 text-white px-9 py-4 rounded-xl transition duration-300 hover:opacity-80">
@@ -173,12 +181,29 @@
             <!-- Order Form Tab Content -->
             <div id="orderContent" class="order-content hidden">
                 <div class="mt-6 p-3">
-                    <form id="orderForm" class="flex flex-col gap-4">
-                        <input type="text" id="orderName" name="name" placeholder="👤 Ваше имя" required class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                    <!-- Добавляем блок для сообщения о необходимости авторизации -->
+                    <div id="authMessage" class="bg-yellow-600 text-white p-4 rounded-lg mb-4 hidden">
+                        <p class="mb-2">Для оформления заказа необходимо войти в аккаунт.</p>
+                        <div class="flex gap-2">
+                            <button id="loginFromCart" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg">Войти</button>
+                            <button id="registerFromCart" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg">Зарегистрироваться</button>
+                        </div>
+                    </div>
 
-                        <div id="phoneContainerOrder" class="relative w-full">
-                            <div id="phonePlaceholderOrder" class="w-full bg-gray-700 text-gray-400 px-4 py-3 rounded-lg cursor-pointer">📱 Номер телефона</div>
-                            <input type="tel" id="phoneInputOrder" name="phone" placeholder="+380 (__) ___ __ __" required class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 hidden">
+                    <form id="orderForm" class="flex flex-col gap-4">
+                        <!-- Поле имени будет заполняться автоматически из данных пользователя -->
+                        <div class="user-data-field">
+                            <input type="text" id="orderName" name="name" placeholder="👤 Ваше имя" required class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400" readonly>
+                            <p class="text-xs text-gray-400 mt-1">Имя будет заполнено из вашего аккаунта</p>
+                        </div>
+
+                        <!-- Поле телефона будет заполняться автоматически из данных пользователя -->
+                        <div class="user-data-field">
+                            <div id="phoneContainerOrder" class="relative w-full">
+                                <div id="phonePlaceholderOrder" class="w-full bg-gray-700 text-gray-400 px-4 py-3 rounded-lg">📱 Номер телефона</div>
+                                <input type="tel" id="phoneInputOrder" name="phone" placeholder="+380 (__) ___ __ __" required class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 hidden" readonly>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-1">Телефон будет заполнен из вашего аккаунта</p>
                         </div>
 
                         <input type="text" id="orderAddress" name="address" placeholder="🏠 Адрес доставки" required class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400">
@@ -249,12 +274,10 @@
     </style>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
     <script src="{{ url_for('static', filename='js/history.js') }}"></script>
     <script src="{{ url_for('static', filename='js/basket.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/register.js') }}"></script>
     <script src="{{ url_for('static', filename='js/search.js') }}"></script>
 </body>
 
 </html>
-

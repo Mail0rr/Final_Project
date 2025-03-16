@@ -1,14 +1,43 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 import sqlite3
 from datetime import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
+import os
 
 app = Flask(__name__)
+app.secret_key = os.urandom(24)  # Секретный ключ для сессий
 
 
 def get_db_connection():
     conn = sqlite3.connect('database.db')
     conn.row_factory = sqlite3.Row
     return conn
+
+
+def get_user_db_connection():
+    conn = sqlite3.connect('users.db')
+    conn.row_factory = sqlite3.Row
+    return conn
+
+
+# Создаем таблицу пользователей, если она не существует
+def create_users_table():
+    conn = get_user_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT NOT NULL UNIQUE,
+        phone TEXT NOT NULL UNIQUE,
+        password TEXT NOT NULL
+    )
+    ''')
+    conn.commit()
+    conn.close()
+
+
+# Вызываем функцию создания таблицы при запуске
+create_users_table()
 
 
 @app.route("/")
@@ -18,6 +47,8 @@ def home():
 
 @app.route("/order/")
 def order():
+    if 'user_id' not in session:
+        return redirect(url_for('home'))
     return render_template("order.html")
 
 
@@ -29,6 +60,115 @@ def menu():
     desserts = conn.execute('SELECT * FROM desserts').fetchall()
     conn.close()
     return render_template("menu.html", dishes=dishes, drinks=drinks, desserts=desserts)
+
+
+@app.route("/api/register", methods=['POST'])
+def api_register():
+    data = request.json
+    username = data.get('username')
+    phone = data.get('phone')
+    password = data.get('password')
+
+    if not username or not phone or not password:
+        return jsonify(success=False, message="Все поля должны быть заполнены")
+
+    conn = get_user_db_connection()
+    existing_user = conn.execute('SELECT * FROM users WHERE username = ? OR phone = ?',
+                                 (username, phone)).fetchone()
+
+    if existing_user:
+        conn.close()
+        if existing_user['username'] == username:
+            return jsonify(success=False, message="Пользователь с таким именем уже существует")
+        else:
+            return jsonify(success=False, message="Номер телефона уже используется")
+
+    hashed_password = generate_password_hash(password)
+
+    try:
+        cursor = conn.execute('INSERT INTO users (username, phone, password) VALUES (?, ?, ?)',
+                              (username, phone, hashed_password))
+        user_id = cursor.lastrowid
+        conn.commit()
+
+        # Автоматически входим пользователя после регистрации
+        session['user_id'] = user_id
+        session['username'] = username
+
+        conn.close()
+
+        return jsonify(success=True, message="Регистрация успешна", redirect="/", username=username)
+    except Exception as e:
+        conn.close()
+        return jsonify(success=False, message=f"Ошибка при регистрации: {str(e)}")
+
+
+@app.route("/api/login", methods=['POST'])
+def api_login():
+    data = request.json
+    username = data.get('username')
+    password = data.get('password')
+
+    if not username or not password:
+        return jsonify(success=False, message="Все поля должны быть заполнены")
+
+    conn = get_user_db_connection()
+    user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
+    conn.close()
+
+    if user and check_password_hash(user['password'], password):
+        # Устанавливаем сессию пользователя
+        session['user_id'] = user['id']
+        session['username'] = user['username']
+
+        return jsonify(success=True, message="Вход выполнен успешно", redirect="/", username=username)
+    else:
+        return jsonify(success=False, message="Неверное имя пользователя или пароль")
+
+
+@app.route("/api/check-auth")
+def check_auth():
+    """Проверяет статус авторизации пользователя и возвращает его данные"""
+    if 'user_id' in session:
+        conn = get_user_db_connection()
+        user = conn.execute('SELECT username, phone FROM users WHERE id = ?', (session['user_id'],)).fetchone()
+        conn.close()
+
+        if user:
+            # Форматируем номер телефона для отображения
+            phone = user['phone']
+            if phone and len(phone) >= 10:
+                formatted_phone = f"+380 ({phone[:2]}) {phone[2:5]} {phone[5:7]} {phone[7:9]}"
+            else:
+                formatted_phone = phone
+
+            return jsonify({
+                'authenticated': True,
+                'username': user['username'],
+                'phone': formatted_phone
+            })
+
+    return jsonify({'authenticated': False})
+
+
+@app.route("/logout")
+def logout():
+    if 'user_id' not in session:
+        return redirect(url_for('home'))
+
+    # Получаем URL страницы, с которой пришел пользователь
+    referrer = request.referrer or url_for('home')
+
+    # Показываем страницу подтверждения выхода
+    return render_template('logout_confirm.html', referrer=referrer)
+
+
+@app.route("/logout/confirm")
+def logout_confirm():
+    # Удаляем данные сессии
+    session.pop('user_id', None)
+    session.pop('username', None)
+    return redirect(url_for('home'))
 
 
 @app.route("/search/")
@@ -80,7 +220,6 @@ def api_search():
 
     conn.close()
 
-    # Преобразуем результаты в список словарей для JSON
     dishes_list = [dict(dish) for dish in dishes]
     drinks_list = [dict(drink) for drink in drinks]
     desserts_list = [dict(dessert) for dessert in desserts]
@@ -194,7 +333,7 @@ def place_order():
         INSERT INTO orders (name, phone, address, payment_method, items_list, total_amount, status)
         VALUES (?, ?, ?, ?, ?, ?, ?)
         ''', (
-        data['name'], data['phone'], data['address'], data['payment_method'], items_list, total_amount, 'pending'))
+            data['name'], data['phone'], data['address'], data['payment_method'], items_list, total_amount, 'pending'))
 
         order_id = cursor.lastrowid
 
@@ -229,3 +368,4 @@ def get_table_names(conn):
 
 if __name__ == "__main__":
     app.run(port=5050, debug=True)
+
