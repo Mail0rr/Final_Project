@@ -1,8 +1,8 @@
 import sqlite3
-from food import dishes, drinks, desserts
+from routes.food import dishes, drinks, desserts
 
 
-conn = sqlite3.connect('food.db')
+conn = sqlite3.connect('database.db')
 cursor = conn.cursor()
 
 

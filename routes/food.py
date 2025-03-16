@@ -11,7 +11,7 @@ dishes = [
         "id": 2,
         "name": "Суши",
         "image": "https://noa.ua/wp-content/uploads/2023/11/kombo-sajt-eksp.jpg",
-        "description": "Рис с морепродуктами, завернутый в нори.",
+        "description": "Вкуснейший рис с морепродуктами, завернутый в нори.",
         "price": 520,
         "ingredients": ["Рис", "Рыба", "Нори", "Соевый соус", "Имбирь"]
     },
@@ -51,7 +51,7 @@ dishes = [
         "id": 7,
         "name": "Кимчи",
         "image": "https://static.1000.menu/img/content-v2/93/46/63146/kimchi-zakaz_1646132417_8_max.jpg",
-        "description": "Острая корейская квашеная капуста.",
+        "description": "Острая корейская квашеная капуста с имбирем и перцем.",
         "price": 200,
         "ingredients": ["Капуста", "Чеснок", "Имбирь", "Перец", "Рыбный соус"]
     },
@@ -67,9 +67,9 @@ dishes = [
         "id": 9,
         "name": "Терияки",
         "image": "https://www.chefmarket.ru/blog/wp-content/uploads/2020/10/teriyaki-chicken-1-2000x1200.jpg",
-        "description": "Курица в сладко-солёном соусе терияки.",
+        "description": "Рис с японской курицей под сладко-солёном соусе терияки.",
         "price": 320,
-        "ingredients": ["Курица", "Соус терияки", "Сахар", "Имбирь", "Чеснок"]
+        "ingredients": ["Рис","Курица", "Соус терияки", "Сахар", "Имбирь", "Чеснок"]
     },
     {
         "id": 10,
@@ -91,7 +91,7 @@ dishes = [
         "id": 12,
         "name": "Тофу ма по",
         "image": "https://avatars.dzeninfra.ru/get-zen_doc/1590748/pub_64fdf6362d85f43c1e580f15_64fdf6905921b358fd1fdcf9/scale_1200",
-        "description": "Китайское блюдо из тофу с пряным соусом.",
+        "description": "Популярное китайское блюдо из тофу с пряным соусом.",
         "price": 300,
         "ingredients": ["Тофу", "Свинина", "Чили", "Чеснок", "Перец"]
     },
@@ -107,7 +107,7 @@ dishes = [
         "id": 14,
         "name": "Суп мисо",
         "image": "https://img.povar.ru/mobile/24/fc/dd/a4/yaponskii_sup_miso-651768.JPG",
-        "description": "Японский суп на основе пасты мисо.",
+        "description": "Вкуснейший японский суп с тофу на основе пасты мисо.",
         "price": 260,
         "ingredients": ["Бульон", "Мисо", "Тофу", "Вакаме", "Зелёный лук"]
     },
@@ -131,7 +131,7 @@ dishes = [
         "id": 17,
         "name": "Тяхан",
         "image": "https://the-challenger.ru/wp-content/uploads/2020/08/tahan_3-800x545.jpg",
-        "description": "Жареный рис с овощами и мясом по-японски.",
+        "description": "Жареный рис с овощами и традиционным японским мясом.",
         "price": 240,
         "ingredients": ["Рис", "Яйцо", "Лук", "Соевый соус", "Свинина"]
     },
@@ -155,7 +155,7 @@ dishes = [
         "id": 20,
         "name": "Наси горенг",
         "image": "https://avatars.dzeninfra.ru/get-zen_doc/10148438/pub_64b29a060adc8743db4964bc_64b29ba6cd6be910996447be/scale_1200",
-        "description": "Индонезийский жареный рис с яйцом и специями.",
+        "description": "Вкуснейший индонезийский жареный рис с яйцом и специями.",
         "price": 320,
         "ingredients": ["Рис", "Яйцо", "Лук", "Чили", "Креветки"]
     },
@@ -163,7 +163,7 @@ dishes = [
         "id": 21,
         "name": "Карри кацу",
         "image": "https://avatars.dzeninfra.ru/get-zen_doc/5289592/pub_6442a1b94f7f264a5a1d9a74_6442a242c7a9750d22860bf4/scale_1200",
-        "description": "Японская котлета с рисом и густым карри.",
+        "description": "Японская котлета с рисом и густым карри соусом.",
         "price": 370,
         "ingredients": ["Свинина", "Карри", "Рис", "Панировка", "Лук"]
     },
@@ -171,7 +171,7 @@ dishes = [
         "id": 22,
         "name": "Якитори",
         "image": "https://brandfood.net/wp-content/uploads/2021/08/govyadina-yakitori-1.jpeg",
-        "description": "Японские куриные шашлычки на гриле.",
+        "description": "Японские куриные шашлычки на гриле с овощами.",
         "price": 320,
         "ingredients": ["Курица", "Соевый соус", "Мирин", "Чеснок", "Лук"]
     },
@@ -179,7 +179,7 @@ dishes = [
         "id": 23,
         "name": "Гунбао тофу",
         "image": "https://scontent.fiev24-1.fna.fbcdn.net/v/t1.6435-9/86671076_497434767622485_696872453959319552_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=103&ccb=1-7&_nc_sid=0b6b33&_nc_ohc=3i06wNVA6wYQ7kNvgH1IOI_&_nc_oc=Adi46yIIWUvg9XRDJl9pPeFVwrluayrgBI_IVf257yeSvv_lpV7T5dCN7d0H2RDK-Vk&_nc_zt=23&_nc_ht=scontent.fiev24-1.fna&_nc_gid=AgH7xTu6jF9QnZqZUoBqPUJ&oh=00_AYC2582YmFdi2uRRXJfL2BA4EpFLY9DRHLrQR1RF4QYpqA&oe=67EBB008",
-        "description": "Китайское пряное блюдо с тофу и арахисом.",
+        "description": "Китайское пряное блюдо с тофу и арахисом в соевом соусе.",
         "price": 300,
         "ingredients": ["Тофу", "Чили", "Арахис", "Чеснок", "Соевый соус"]
     },
@@ -187,7 +187,7 @@ dishes = [
         "id": 24,
         "name": "Сяо лун бао",
         "image": "https://img.freepik.com/premium-photo/steamed-pork-soup-dumplings-named-xiao-long-bao-taiwan_315337-7282.jpg",
-        "description": "Китайские суповые пельмени на пару.",
+        "description": "Китайские суповые пельмени с луком на пару.",
         "price": 320,
         "ingredients": ["Тесто", "Свинина", "Бульон", "Имбирь", "Зелёный лук"]
     },
@@ -219,7 +219,7 @@ dishes = [
         "id": 28,
         "name": "Соба с говядиной",
         "image": "https://media.ovkuse.ru/images/recipes/31e7ebf2-c07f-447c-ae53-6b4c83b0a5fa/31e7ebf2-c07f-447c-ae53-6b4c83b0a5fa_420_420.webp",
-        "description": "Гречневая лапша с говядиной в соусе.",
+        "description": "Гречневая лапша соба с говядиной в соусе.",
         "price": 370,
         "ingredients": ["Лапша соба", "Говядина", "Соевый соус", "Лук", "Кунжутное масло"]
     },
@@ -243,7 +243,7 @@ dishes = [
         "id": 31,
         "name": "Данданьмянь",
         "image": "https://images.gastronom.ru/vs5RBnufrGydrHj0oJfPZm2Zs7rTU4Z8Vq6OB-LDuhI/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzL2NiNzE3ZWMwLTM1NzYtNGUwYi1hNWI4LWM4OTZjMjliN2MyYy5qcGc.webp",
-        "description": "Китайская лапша с острой кунжутной пастой.",
+        "description": "Китайская лапша с острой кунжутной пастой и мясом.",
         "price": 330,
         "ingredients": ["Лапша", "Свинина", "Кунжутная паста", "Чеснок", "Перец чили"]
     },
@@ -262,15 +262,15 @@ drinks = [
         "id": 1,
         "name": "Зелёный чай",
         "image": "https://chaynyy-list.ru/upload/medialibrary/9e6/dfswparq22pf68zfp2fn5w8pz52jd9df.jpg",
-        "description": "Традиционный китайский зелёный чай.",
+        "description": "Традиционный, всем знакомый, китайский зелёный чай.",
         "price": 120,
         "ingredients": ["Чайные листья"]
     },
     {
         "id": 2,
         "name": "Чай матча",
-        "image": "https://i1.wp.com/real-vin.com/wp-content/uploads/2018/01/mjatnyj-chaj-640x427.jpg?resize=640%2C427",
-        "description": "Японский порошковый зелёный чай с характерным горьковатым вкусом.",
+        "image": "https://101tea.ru/upload/ammina.optimizer/jpg-webp/q70/upload/iblock/593/5939e1b5b44e66d6c1a90d5e325a46fb.webp",
+        "description": "Японский порошковый зелёный чай с горьковатым вкусом.",
         "price": 140,
         "ingredients": ["Порошок матча", "Вода"]
     },
@@ -326,7 +326,7 @@ drinks = [
         "id": 9,
         "name": "Имбирный чай",
         "image": "https://www.chefmarket.ru/blog/wp-content/uploads/2018/09/shutterstock_242793037-e1536059519801.jpg",
-        "description": "Чай с имбирем и мёдом.",
+        "description": "Имбирный чай с добавлением мёда.",
         "price": 130,
         "ingredients": ["Имбирь", "Мёд", "Чай"]
     },
@@ -350,7 +350,7 @@ drinks = [
         "id": 12,
         "name": "Холодный жасминовый чай",
         "image": "https://images.gastronom.ru/6xer9xiTmwHwzVd83x-S7eP9cXqZ22UfCy9WZPEkFrg/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzdjMmQwZDczLTk4MmYtNDJkYS04N2M0LTg1NzdmMzAyNjFjNS5qcGc.webp",
-        "description": "Ароматный чай с жасмином.",
+        "description": "Холодный ароматный чай с жасмином.",
         "price": 120,
         "ingredients": ["Чай жасминовый", "Вода"]
     },
@@ -358,7 +358,7 @@ drinks = [
         "id": 13,
         "name": "Рисовое молоко",
         "image": "https://cdn.informator.ua/@prod/media/ua/2021/06/02/60b7975eeabca5.79277799.jpg",
-        "description": "Лёгкий сладковатый напиток.",
+        "description": "Лёгкий сладковатый напиток на основе риса.",
         "price": 150,
         "ingredients": ["Рис", "Вода", "Сахар"]
     },
@@ -366,7 +366,7 @@ drinks = [
         "id": 14,
         "name": "Тыквенный латте",
         "image": "https://blog.coffeeok.com.ua/wp-content/uploads/2023/10/tikvennii-latte-1-scaled.jpg",
-        "description": "Пряный осенний напиток с тыквой.",
+        "description": "Пряный осенний напиток с тыквой и кофе.",
         "price": 180,
         "ingredients": ["Тыква", "Молоко", "Корица", "Кофе"]
     },
@@ -399,9 +399,9 @@ desserts = [
     },
     {
         "id": 2,
-        "name": "Сезамовые шарики",
+        "name": "Димсам",
         "image": "https://st.depositphotos.com/3162779/54178/i/450/depositphotos_541783334-stock-photo-tangyuan-chinese-dessert-made-ball.jpg",
-        "description": "Китайские сладкие шарики из клейкого риса с начинкой из черного кунжута, подаются с сиропом.",
+        "description": "Шарики из клейкого риса с начинкой из кунжута с сиропом.",
         "price": 250,
         "ingredients": ["Клейкий рис", "Черный кунжут", "Сахар", "Имбирь"]
     },
@@ -415,9 +415,9 @@ desserts = [
     },
     {
         "id": 4,
-        "name": "Чиа-пудинг с манго",
+        "name": "Манго-пудинг",
         "image": "https://assets.livinn.lt/fit-in/465x465/12/5f/44/chia-pudingas-min.jpeg",
-        "description": "Популярный десерт в Юго-Восточной Азии, приготовленный из чиа, кокосового молока и свежего манго.",
+        "description": "Популярный десерт из чиа, кокосового молока и свежего манго.",
         "price": 320,
         "ingredients": ["Чиа", "Кокосовое молоко", "Манго", "Мед"]
     },
@@ -425,7 +425,7 @@ desserts = [
         "id": 5,
         "name": "Кокосовый пудинг",
         "image": "https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_67c245a7b8d8360f23e82123_67c247dd4419276b4f918043/scale_1200",
-        "description": "Филиппинский десерт с кокосовым пудингом, тапиокой и сиропом из сахара пальмы.",
+        "description": "Десерт с кокосовым пудингом и сиропом из сахара пальмы.",
         "price": 280,
         "ingredients": ["Кокосовое молоко", "Тапиока", "Сахар пальмы", "Лед"]
     },
@@ -433,7 +433,7 @@ desserts = [
         "id": 6,
         "name": "Тарт с манго",
         "image": "https://w4s8p5t8.delivery.rocketcdn.me/wp-content/uploads/2022/06/mango-passion-fruit-tart.jpg",
-        "description": "Десерт с манго и сладким кремом в хрустящей корочке.",
+        "description": "Десерт с манго и сладким кремом в хрустящей корочке из песочного теста.",
         "price": 280,
         "ingredients": ["Манго", "Крем", "Тесто"]
     },
@@ -441,7 +441,7 @@ desserts = [
         "id": 7,
         "name": "Сезамовые печенья",
         "image": "https://s1.eda.ru/StaticContent/Photos/120131082509/160406210314/p_O.jpg",
-        "description": "Китайские печенья с сезамом.",
+        "description": "Китайские традиционные печенья с сезамом.",
         "price": 150,
         "ingredients": ["Сезам", "Мука", "Масло", "Сахар"]
     },
@@ -449,7 +449,7 @@ desserts = [
         "id": 8,
         "name": "Пудинг с чаем матча",
         "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi-Ep3UQ6jiPo-xslhgbcReqVMNWazTlGvBppbT0CCnikDznI6DiBurfWUHmTDBgQrOLt0gnFryfdhNTlb-0RVVkTrySXuVC8uP2G0D_aActZ4afdLaNHnhXfooMnEVRwIaleoJf-krzG0-/s1600/%25D0%259F%25D1%2583%25D0%25B4%25D0%25B8%25D0%25BD%25D0%25B3+%25D1%2581+%25D1%2587%25D0%25B8%25D0%25B0+%25D0%25B8+%25D1%2587%25D0%25B0%25D0%25B5%25D0%25BC+%25D0%259C%25D0%25B0%25D1%2582%25D1%2587%25D0%25B0+iuliia_ned.jpg",
-        "description": "Нежный пудинг с добавлением порошка матча.",
+        "description": "Нежный пудинг с порошком матча.",
         "price": 250,
         "ingredients": ["Порошок матча", "Молоко", "Сахар"]
     },
@@ -465,7 +465,7 @@ desserts = [
         "id": 10,
         "name": "Дангo",
         "image": "https://cdn.lifehacker.ru/wp-content/uploads/2023/11/Dango_1699528111-e1699528145978.jpg",
-        "description": "Шарики из рисовой муки с соусом митараши.",
+        "description": "Вкуснейшие шарики из рисовой муки с соусом митараши.",
         "price": 160,
         "ingredients": ["Рисовая мука", "Соевый соус", "Сахар", "Крахмал"]
     },

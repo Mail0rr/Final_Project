@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Menu{% endblock %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body class="bg-gray-800 text-white flex flex-col min-h-screen">
@@ -65,8 +66,8 @@
                 <form action="/register" method="POST" class="flex flex-col gap-4">
                     <input type="text" name="username" placeholder="👤 Логин" required class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400">
                     <div id="phoneContainer" class="relative w-full">
-                    <div id="phonePlaceholder" class="w-full bg-gray-700 text-gray-400 px-4 py-3 rounded-lg cursor-pointer">📱 Номер телефона</div>
-                    <input type="tel" name="phone" id="phoneInput" placeholder="+380 (__) ___ __ __" required class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 hidden">
+                        <div id="phonePlaceholder" class="w-full bg-gray-700 text-gray-400 px-4 py-3 rounded-lg cursor-pointer">📱 Номер телефона</div>
+                        <input type="tel" name="phone" id="phoneInput" placeholder="+380 (__) ___ __ __" required class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 hidden">
                     </div>
                     <input type="password" name="password" placeholder="🔑 Пароль" required class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400">
                     <button type="submit" class="w-full bg-lime-600 text-white px-9 py-4 rounded-xl transition duration-300 hover:opacity-80">
@@ -133,23 +134,97 @@
     <div id="basketModal" class="fixed inset-0 flex items-center justify-center bg-stone-300 bg-opacity-20 backdrop-blur-none hidden z-50 transition-transform duration-300 scale-0">
         <div class="bg-gray-800 text-white p-9 rounded-3xl shadow-2xl w-[36rem] border border-gray-700 bg-opacity-95">
             <div class="flex justify-between items-center border-b border-stone-300 pb-6">
-                <h2 class="text-2xl font-bold">🛒 Ваша корзина</h2>
+                <div class="flex items-center gap-4">
+                    <h2 class="text-2xl font-bold cart-tab active" data-tab="cart">🛒 Ваша корзина</h2>
+                    <h2 class="text-2xl font-bold order-tab" data-tab="order">📋 Оформление</h2>
+                </div>
                 <button id="closeBasket" class="text-red-500 text-4xl">&times;</button>
             </div>
-            <div class="mt-6 max-h-96 overflow-y-auto p-3">
-                <p class="text-gray-300 text-lg">Ваша корзина пуста.</p>
-            </div>
-            <div class="border-t border-gray-600 pt-6">
-                <a href="/order">
-                    <button class="w-full bg-lime-600 text-white px-9 py-3 rounded-xl transition duration-300 hover:opacity-80">
+
+            <!-- Cart Tab Content -->
+            <div id="cartContent" class="cart-content active">
+                <div class="mt-6 max-h-96 overflow-y-auto p-3">
+                    <div id="cartItems">
+                        <p class="text-gray-300 text-lg">Ваша корзина пуста.</p>
+                    </div>
+
+                    <!-- Pagination controls -->
+                    <div id="cartPagination" class="flex justify-center items-center gap-4 mt-4 hidden">
+                        <button id="prevPage" class="px-3 py-1 bg-gray-700 rounded-lg disabled:opacity-50">←</button>
+                        <span id="pageInfo">1 / 1</span>
+                        <button id="nextPage" class="px-3 py-1 bg-gray-700 rounded-lg disabled:opacity-50">→</button>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-600 pt-6 mt-4">
+                    <div class="flex justify-between text-xl font-bold mb-4">
+                        <span>Итого:</span>
+                        <span id="cartTotal">0 грн</span>
+                    </div>
+                    <button id="proceedToOrder" class="w-full bg-lime-600 text-white px-9 py-3 rounded-xl transition duration-300 hover:opacity-80 mb-2">
                         Оформить заказ
                     </button>
-                </a>
-                <a href="#">
-                    <button class="w-full bg-red-600 text-white px-9 py-3 rounded-xl transition duration-300 hover:opacity-80 mt-2">
-                        Отчистить всё
+                    <button id="clearCart" class="w-full bg-red-600 text-white px-9 py-3 rounded-xl transition duration-300 hover:opacity-80">
+                        Очистить корзину
                     </button>
-                </a>
+                </div>
+            </div>
+
+            <!-- Order Form Tab Content -->
+            <div id="orderContent" class="order-content hidden">
+                <div class="mt-6 p-3">
+                    <form id="orderForm" class="flex flex-col gap-4">
+                        <input type="text" id="orderName" name="name" placeholder="👤 Ваше имя" required class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400">
+
+                        <div id="phoneContainerOrder" class="relative w-full">
+                            <div id="phonePlaceholderOrder" class="w-full bg-gray-700 text-gray-400 px-4 py-3 rounded-lg cursor-pointer">📱 Номер телефона</div>
+                            <input type="tel" id="phoneInputOrder" name="phone" placeholder="+380 (__) ___ __ __" required class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 hidden">
+                        </div>
+
+                        <input type="text" id="orderAddress" name="address" placeholder="🏠 Адрес доставки" required class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400">
+
+                        <div class="w-full">
+                            <p class="mb-2 px-1">💳 Способ оплаты:</p>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <input type="radio" name="paymentMethod" value="cash" id="cashPayment" checked class="peer sr-only" />
+                                    <label for="cashPayment" class="flex flex-col items-center justify-between rounded-md border-2 border-gray-700 bg-gray-700 p-4 hover:bg-gray-600 hover:border-gray-600 peer-checked:border-yellow-400 cursor-pointer transition-all">
+                                        <span class="text-2xl mb-2">💵</span>
+                                        <span>Наличными</span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="paymentMethod" value="card" id="cardPayment" class="peer sr-only" />
+                                    <label for="cardPayment" class="flex flex-col items-center justify-between rounded-md border-2 border-gray-700 bg-gray-700 p-4 hover:bg-gray-600 hover:border-gray-600 peer-checked:border-yellow-400 cursor-pointer transition-all">
+                                        <span class="text-2xl mb-2">💳</span>
+                                        <span>Картой</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-2">
+                            <h3 class="font-semibold mb-2">📋 Ваш заказ:</h3>
+                            <div id="orderSummary" class="max-h-[200px] overflow-y-auto bg-gray-700 rounded-lg p-3"></div>
+
+                            <div class="mt-4 pt-2 border-t border-gray-700 flex justify-between">
+                                <span class="font-bold">Итого:</span>
+                                <span id="orderTotal" class="font-bold">0 грн</span>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-2 mt-2">
+                            <button type="button" id="backToCart"
+                                class="flex-1 px-4 py-3 bg-gray-700 text-white rounded-xl hover:bg-gray-600 transition">
+                                Назад
+                            </button>
+                            <button type="submit"
+                                class="flex-1 px-4 py-3 bg-lime-600 text-white rounded-xl hover:bg-lime-700 transition">
+                                Подтвердить заказ
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -174,10 +249,8 @@
     </style>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script src="{{ url_for('static', filename='js/letter.js') }}"></script>
     <script src="{{ url_for('static', filename='js/login.js') }}"></script>
     <script src="{{ url_for('static', filename='js/history.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/order.js') }}"></script>
     <script src="{{ url_for('static', filename='js/basket.js') }}"></script>
     <script src="{{ url_for('static', filename='js/register.js') }}"></script>
     <script src="{{ url_for('static', filename='js/search.js') }}"></script>
