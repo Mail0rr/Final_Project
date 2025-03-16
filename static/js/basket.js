@@ -104,8 +104,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (proceedToOrderButton) {
     proceedToOrderButton.addEventListener("click", () => {
       switchTab("order")
-      // Проверяем авторизацию и заполняем поля пользователя
-      checkAuthAndFillUserData()
     })
   }
 
@@ -132,121 +130,6 @@ document.addEventListener("DOMContentLoaded", () => {
       orderContent.classList.add("active")
       updateOrderSummary()
     }
-  }
-
-  // Функция для проверки авторизации и заполнения данных пользователя
-  function checkAuthAndFillUserData() {
-    // Получаем элементы формы
-    const nameInput = document.getElementById("orderName")
-    const phoneInput = document.getElementById("phoneInputOrder")
-    const phonePlaceholder = document.getElementById("phonePlaceholderOrder")
-    const authMessage = document.getElementById("authMessage")
-    const userDataFields = document.querySelectorAll(".user-data-field")
-    const orderForm = document.getElementById("orderForm")
-
-    // Проверяем, авторизован ли пользователь
-    fetch("/api/check-auth")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.authenticated) {
-          // Пользователь авторизован, заполняем поля
-          if (nameInput) {
-            nameInput.value = data.username
-            nameInput.readOnly = true
-            nameInput.classList.add("bg-gray-600")
-          }
-
-          if (phoneInput && phonePlaceholder) {
-            phoneInput.value = data.phone
-            phoneInput.readOnly = true
-            phoneInput.classList.add("bg-gray-600")
-            phoneInput.classList.remove("hidden")
-            phonePlaceholder.classList.add("hidden")
-          }
-
-          // Показываем поля формы
-          userDataFields.forEach((field) => {
-            field.classList.remove("hidden")
-          })
-
-          // Скрываем сообщение об авторизации
-          if (authMessage) {
-            authMessage.classList.add("hidden")
-          }
-
-          // Разблокируем форму
-          if (orderForm) {
-            orderForm.classList.remove("opacity-50", "pointer-events-none")
-          }
-        } else {
-          // Пользователь не авторизован
-          // Скрываем поля формы
-          userDataFields.forEach((field) => {
-            field.classList.add("hidden")
-          })
-
-          // Показываем сообщение о необходимости авторизации
-          if (authMessage) {
-            authMessage.classList.remove("hidden")
-          }
-
-          // Блокируем форму
-          if (orderForm) {
-            orderForm.classList.add("opacity-50", "pointer-events-none")
-          }
-        }
-      })
-      .catch((error) => {
-        console.error("Ошибка при проверке авторизации:", error)
-      })
-  }
-
-  // Функция для создания сообщения об авторизации
-  function createAuthMessage() {
-    const orderFormContainer = document.querySelector("#orderContent .mt-6")
-    if (!orderFormContainer) return null
-
-    const authMessage = document.createElement("div")
-    authMessage.id = "authMessage"
-    authMessage.className = "bg-yellow-600 text-white p-4 rounded-lg mb-4 hidden"
-    authMessage.innerHTML = `
-      <p class="mb-2">Для оформления заказа необходимо войти в аккаунт.</p>
-      <div class="flex gap-2">
-        <button id="loginFromCart" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg">Войти</button>
-        <button id="registerFromCart" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg">Зарегистрироваться</button>
-      </div>
-    `
-
-    orderFormContainer.insertBefore(authMessage, orderFormContainer.firstChild)
-
-    // Добавляем обработчики для кнопок
-    document.getElementById("loginFromCart").addEventListener("click", () => {
-      // Закрываем модальное окно корзины
-      modal.classList.add("scale-0")
-      setTimeout(() => {
-        modal.classList.add("hidden")
-        // Открываем модальное окно входа
-        const loginModal = document.getElementById("loginModal")
-        if (loginModal) {
-          loginModal.classList.remove("hidden", "scale-0")
-        }
-      }, 200)
-    })
-
-    document.getElementById("registerFromCart").addEventListener("click", () => {
-      // Закрываем модальное окно корзины
-      modal.classList.add("scale-0")
-      setTimeout(() => {
-        modal.classList.add("hidden")
-        // Открываем модальное окно регистрации
-        const registerModal = document.getElementById("registerModal")
-        if (registerModal) {
-          registerModal.classList.remove("hidden", "scale-0")
-        }
-      }, 200)
-    })
-
-    return authMessage
   }
 
   // Cart Functions
@@ -492,22 +375,10 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault()
 
       try {
-        // Проверяем авторизацию перед отправкой заказа
-        const authResponse = await fetch("/api/check-auth")
-        const authData = await authResponse.json()
-
-        if (!authData.authenticated) {
-          showNotification("Для оформления заказа необходимо войти в аккаунт", "bg-red-600")
-          // Показываем сообщение о необходимости авторизации
-          const authMessage = document.getElementById("authMessage")
-          if (authMessage) {
-            authMessage.classList.remove("hidden")
-          }
-          return
-        }
-
         const name = document.getElementById("orderName").value
-        const phone = document.getElementById("phoneInputOrder").value
+        const phone = document.getElementById("orderPhone")
+          ? document.getElementById("orderPhone").value
+          : document.getElementById("phoneInputOrder").value
         const address = document.getElementById("orderAddress").value
 
         // Check if payment method is selected
@@ -520,8 +391,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const cart = getCart()
 
-        if (!address) {
-          showNotification("Укажите адрес доставки", "bg-red-600")
+        if (!name || !phone || !address) {
+          showNotification("Заполните все поля", "bg-red-600")
           return
         }
 
@@ -716,121 +587,6 @@ document.addEventListener("DOMContentLoaded", () => {
         notification.remove()
       }, 500)
     }, 3000)
-  }
-})
-
-// Добавляем обработчики для кнопок авторизации в корзине
-document.addEventListener("DOMContentLoaded", () => {
-  const loginFromCart = document.getElementById("loginFromCart")
-  const registerFromCart = document.getElementById("registerFromCart")
-  const basketModal = document.getElementById("basketModal")
-  const loginModal = document.getElementById("loginModal")
-  const registerModal = document.getElementById("registerModal")
-
-  if (loginFromCart) {
-    loginFromCart.addEventListener("click", () => {
-      // Закрываем модальное окно корзины
-      if (basketModal) {
-        basketModal.classList.add("scale-0")
-        setTimeout(() => {
-          basketModal.classList.add("hidden")
-          // Открываем модальное окно входа
-          if (loginModal) {
-            loginModal.classList.remove("hidden", "scale-0")
-          }
-        }, 200)
-      }
-    })
-  }
-
-  if (registerFromCart) {
-    registerFromCart.addEventListener("click", () => {
-      // Закрываем модальное окно корзины
-      if (basketModal) {
-        basketModal.classList.add("scale-0")
-        setTimeout(() => {
-          basketModal.classList.add("hidden")
-          // Открываем модальное окно регистрации
-          if (registerModal) {
-            registerModal.classList.remove("hidden", "scale-0")
-          }
-        }, 200)
-      }
-    })
-  }
-
-  // Вызываем проверку авторизации при переходе на вкладку оформления заказа
-  const proceedToOrderButton = document.getElementById("proceedToOrder")
-  if (proceedToOrderButton) {
-    proceedToOrderButton.addEventListener("click", () => {
-      checkAuthAndFillUserData()
-    })
-  }
-
-  function checkAuthAndFillUserData() {
-    // Получаем элементы формы
-    const nameInput = document.getElementById("orderName")
-    const phoneInput = document.getElementById("phoneInputOrder")
-    const phonePlaceholder = document.getElementById("phonePlaceholderOrder")
-    const authMessage = document.getElementById("authMessage")
-    const userDataFields = document.querySelectorAll(".user-data-field")
-    const orderForm = document.getElementById("orderForm")
-
-    // Проверяем, авторизован ли пользователь
-    fetch("/api/check-auth")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.authenticated) {
-          // Пользователь авторизован, заполняем поля
-          if (nameInput) {
-            nameInput.value = data.username
-            nameInput.readOnly = true
-            nameInput.classList.add("bg-gray-600")
-          }
-
-          if (phoneInput && phonePlaceholder) {
-            phoneInput.value = data.phone
-            phoneInput.readOnly = true
-            phoneInput.classList.add("bg-gray-600")
-            phoneInput.classList.remove("hidden")
-            phonePlaceholder.classList.add("hidden")
-          }
-
-          // Показываем поля формы
-          userDataFields.forEach((field) => {
-            field.classList.remove("hidden")
-          })
-
-          // Скрываем сообщение об авторизации
-          if (authMessage) {
-            authMessage.classList.add("hidden")
-          }
-
-          // Разблокируем форму
-          if (orderForm) {
-            orderForm.classList.remove("opacity-50", "pointer-events-none")
-          }
-        } else {
-          // Пользователь не авторизован
-          // Скрываем поля формы
-          userDataFields.forEach((field) => {
-            field.classList.add("hidden")
-          })
-
-          // Показываем сообщение о необходимости авторизации
-          if (authMessage) {
-            authMessage.classList.remove("hidden")
-          }
-
-          // Блокируем форму
-          if (orderForm) {
-            orderForm.classList.add("opacity-50", "pointer-events-none")
-          }
-        }
-      })
-      .catch((error) => {
-        console.error("Ошибка при проверке авторизации:", error)
-      })
   }
 })
 
