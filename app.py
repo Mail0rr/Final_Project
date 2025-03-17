@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 import sqlite3
-from datetime import datetime
+from datetime import datetime, timedelta
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 
@@ -392,6 +392,92 @@ def get_table_names(conn):
     cursor = conn.cursor()
     cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
     return [row[0] for row in cursor.fetchall()]
+
+
+@app.route("/api/get-orders")
+def get_orders():
+    """Получает историю заказов для авторизованного пользователя"""
+    try:
+        # Проверяем, авторизован ли пользователь
+        if 'user_id' not in session:
+            return jsonify({
+                "success": False,
+                "message": "auth_required",
+                "details": "Для просмотра заказов необходимо войти в аккаунт"
+            }), 403
+
+        # Получаем данные пользователя из БД
+        conn_user = get_user_db_connection()
+        user = conn_user.execute('SELECT username, phone FROM users WHERE id = ?', (session['user_id'],)).fetchone()
+        conn_user.close()
+
+        if not user:
+            return jsonify({
+                "success": False,
+                "message": "user_not_found",
+                "details": "Пользователь не найден"
+            }), 404
+
+        # Получаем номер телефона пользователя для поиска заказов
+        phone = user['phone']
+
+        # Подключаемся к базе данных заказов
+        conn = get_db_connection()
+
+        # Получаем все заказы пользователя, отсортированные по дате (от новых к старым)
+        orders = conn.execute('''
+            SELECT id, name, phone, address, payment_method, items_list, total_amount, status, created_at
+            FROM orders 
+            WHERE phone = ? 
+            ORDER BY created_at DESC
+        ''', (phone,)).fetchall()
+
+        conn.close()
+
+        # Преобразуем результаты в список словарей
+        orders_list = []
+        for order in orders:
+            # Корректируем временную метку для часового пояса Украины (+2 часа)
+            created_at = order['created_at']
+            if created_at:
+                # Парсим временную метку
+                try:
+                    # Если это строка, парсим её
+                    if isinstance(created_at, str):
+                        dt = datetime.strptime(created_at, '%Y-%m-%d %H:%M:%S')
+                    else:
+                        dt = created_at
+
+                    # Добавляем 2 часа для часового пояса Украины
+                    dt = dt + timedelta(hours=2)
+                    created_at = dt.strftime('%Y-%m-%d %H:%M:%S')
+                except Exception as e:
+                    print(f"Ошибка при парсинге даты: {e}")
+                    # Оставляем оригинал, если парсинг не удался
+
+            orders_list.append({
+                "id": order['id'],
+                "name": order['name'],
+                "phone": order['phone'],
+                "address": order['address'],
+                "payment_method": order['payment_method'],
+                "items_list": order['items_list'],
+                "total_amount": order['total_amount'],
+                "status": order['status'],
+                "created_at": created_at
+            })
+
+        return jsonify({
+            "success": True,
+            "orders": orders_list
+        })
+
+    except Exception as e:
+        print(f"Ошибка при получении заказов: {str(e)}")
+        return jsonify({
+            "success": False,
+            "message": f"Произошла ошибка при получении заказов: {str(e)}"
+        }), 500
 
 
 if __name__ == "__main__":

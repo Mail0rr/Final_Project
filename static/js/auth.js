@@ -216,6 +216,13 @@ function updateAuthUI(isLoggedIn) {
     // Добавляем обработчик для кнопки регистрации
     authElement.addEventListener("click", showRegisterModal)
   }
+
+  // Кнопка заказов всегда видна, но для неавторизованных пользователей
+  // будет показываться уведомление при нажатии
+  const ordersButton = document.getElementById("ordersButton")
+  if (ordersButton) {
+    ordersButton.classList.remove("hidden")
+  }
 }
 
 // Функция для показа модального окна регистрации
@@ -225,3 +232,4 @@ function showRegisterModal() {
     registerModal.classList.remove("hidden", "scale-0")
   }
 }
+

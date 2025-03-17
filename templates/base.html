@@ -41,6 +41,7 @@
                             <li><a href="/menu/#dessert" class="block px-4 py-2 hover:bg-gray-700">Desserts</a></li>
                         </ul>
                     </li>
+                    <!-- Изменяем кнопку заказов, чтобы она всегда была видна -->
                     <li>
                         <a href="#" id="ordersButton" class="flex items-center gap-2 text-xl hover:text-yellow-400">
                             <img src="{{ url_for('static', filename='images/my_orders.png') }}" alt="My Orders" class="w-7 h-7">
@@ -118,22 +119,7 @@
                 <button id="closeOrders" class="text-red-500 text-4xl">&times;</button>
             </div>
             <div class="mt-6 max-h-96 overflow-y-auto p-3">
-                <!-- Пример
-                <div class="order-item border-b border-gray-600 pb-4 mb-4">
-                    <p class="text-lg">Заказ #1</p>
-                    <ul class="list-disc ml-6 text-gray-300">
-                        <li>Блюдо 1</li>
-                    </ul>
-                    <p class="text-gray-300">Статус: Ожидает</p>
-                </div>
-                <div class="order-item border-b border-gray-600 pb-4 mb-4">
-                    <p class="text-lg">Заказ #2</p>
-                    <ul class="list-disc ml-6 text-gray-300">
-                        <li>Блюдо 1</li>
-                    </ul>
-                    <p class="text-gray-300">Статус: Доставлен</p>
-                </div>
-                -->
+                <!-- Здесь будут отображаться заказы -->
                 <p class="text-gray-300 text-lg">У вас нет заказов.</p>
             </div>
         </div>
@@ -258,7 +244,7 @@
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/history.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/orders.js') }}"></script>
     <script src="{{ url_for('static', filename='js/basket.js') }}"></script>
     <script src="{{ url_for('static', filename='js/search.js') }}"></script>
 </body>
