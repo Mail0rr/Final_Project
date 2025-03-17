@@ -23,4 +23,3 @@ document.getElementById("closeRegister").addEventListener("click", () => {
 document.getElementById("closeLogin").addEventListener("click", () => {
   document.getElementById("loginModal").classList.add("hidden", "scale-0")
 })
-

@@ -266,11 +266,39 @@ def place_order():
     try:
         data = request.json
 
-        if not data or not all(key in data for key in ['name', 'phone', 'address', 'payment_method', 'cart_items']):
+        # Изменяем проверку обязательных полей, убираем 'phone' из списка
+        if not data or not all(key in data for key in ['name', 'address', 'payment_method', 'cart_items']):
             return jsonify({
                 "success": False,
                 "message": "Missing required fields"
             }), 400
+
+        # Проверка авторизации пользователя
+        if 'user_id' not in session:
+            return jsonify({
+                "success": False,
+                "message": "auth_required",
+                "details": "Для оформления заказа необходимо войти в аккаунт"
+            }), 403
+
+        # Получаем данные пользователя из БД
+        conn_user = get_user_db_connection()
+        user = conn_user.execute('SELECT username, phone FROM users WHERE id = ?', (session['user_id'],)).fetchone()
+        conn_user.close()
+
+        if not user:
+            return jsonify({
+                "success": False,
+                "message": "user_not_found",
+                "details": "Пользователь не найден"
+            }), 404
+
+        # Используем номер телефона из базы данных пользователей
+        phone = user['phone']
+
+        # Если в запросе есть номер телефона, используем его вместо номера из БД
+        if 'phone' in data and data['phone']:
+            phone = data['phone']
 
         conn = get_db_connection()
         cursor = conn.cursor()
@@ -333,7 +361,7 @@ def place_order():
         INSERT INTO orders (name, phone, address, payment_method, items_list, total_amount, status)
         VALUES (?, ?, ?, ?, ?, ?, ?)
         ''', (
-            data['name'], data['phone'], data['address'], data['payment_method'], items_list, total_amount, 'pending'))
+            data['name'], phone, data['address'], data['payment_method'], items_list, total_amount, 'pending'))
 
         order_id = cursor.lastrowid
 
@@ -368,4 +396,3 @@ def get_table_names(conn):
 
 if __name__ == "__main__":
     app.run(port=5050, debug=True)
-

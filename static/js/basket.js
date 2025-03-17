@@ -61,6 +61,11 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.classList.remove("hidden", "scale-0")
         modal.classList.add("flex", "scale-100")
         console.log("Модальное окно открыто")
+
+        // Если активна вкладка оформления, заполняем форму данными пользователя
+        if (orderContent && !orderContent.classList.contains("hidden")) {
+          fillOrderFormWithUserData()
+        }
       }
     })
   }
@@ -101,9 +106,38 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
+  // Обновим обработчик кнопки "Оформить заказ"
   if (proceedToOrderButton) {
     proceedToOrderButton.addEventListener("click", () => {
-      switchTab("order")
+      // Проверяем, авторизован ли пользователь
+      fetch("/api/check-auth")
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.authenticated) {
+            // Если пользователь авторизован, переходим к оформлению заказа
+            switchTab("order")
+            fillOrderFormWithUserData()
+          } else {
+            // Если пользователь не авторизован, показываем уведомление
+            showNotification("Для оформления заказа необходимо войти в аккаунт", "bg-red-600")
+
+            // Закрываем модальное окно корзины
+            modal.classList.add("scale-0")
+            setTimeout(() => {
+              modal.classList.add("hidden")
+
+              // Открываем модальное окно входа
+              const loginModal = document.getElementById("loginModal")
+              if (loginModal) {
+                loginModal.classList.remove("hidden", "scale-0")
+              }
+            }, 200)
+          }
+        })
+        .catch((error) => {
+          console.error("Ошибка при проверке авторизации:", error)
+          showNotification("Произошла ошибка при проверке авторизации", "bg-red-600")
+        })
     })
   }
 
@@ -369,6 +403,48 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
+  // Функция для автоматического заполнения формы заказа данными пользователя
+  function fillOrderFormWithUserData() {
+    // Проверяем, авторизован ли пользователь
+    fetch("/api/check-auth")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.authenticated) {
+          // Заполняем имя пользователя
+          const nameInput = document.getElementById("orderName")
+          if (nameInput) {
+            nameInput.value = data.username
+          }
+
+          // Заполняем номер телефона и делаем его доступным для редактирования
+          const phoneInput = document.getElementById("phoneInputOrder")
+          const phonePlaceholder = document.getElementById("phonePlaceholderOrder")
+
+          if (phoneInput && phonePlaceholder && data.phone) {
+            phonePlaceholder.classList.add("hidden")
+            phoneInput.classList.remove("hidden")
+            phoneInput.value = data.phone
+            phoneInput.readOnly = false // Делаем поле доступным для редактирования
+            phoneInput.classList.remove("bg-gray-600") // Убираем визуальное отображение недоступности
+
+            // Добавляем подсказку о том, что номер телефона можно изменить
+            let phoneHint = document.getElementById("phoneHint")
+            if (!phoneHint) {
+              phoneHint = document.createElement("div")
+              phoneHint.id = "phoneHint"
+              phoneHint.className = "text-gray-400 text-sm mt-1"
+              phoneInput.parentNode.appendChild(phoneHint)
+            }
+
+            phoneHint.textContent = "Вы можете изменить номер телефона"
+          }
+        }
+      })
+      .catch((error) => {
+        console.error("Ошибка при получении данных пользователя:", error)
+      })
+  }
+
   // Order Form Submission
   if (orderForm) {
     orderForm.addEventListener("submit", async (e) => {
@@ -376,10 +452,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       try {
         const name = document.getElementById("orderName").value
-        const phone = document.getElementById("orderPhone")
-          ? document.getElementById("orderPhone").value
-          : document.getElementById("phoneInputOrder").value
         const address = document.getElementById("orderAddress").value
+
+        // Получаем номер телефона из поля ввода
+        const phoneInput = document.getElementById("phoneInputOrder")
+        const phone = phoneInput ? phoneInput.value : ""
 
         // Check if payment method is selected
         const paymentMethodElement = document.querySelector('input[name="paymentMethod"]:checked')
@@ -391,14 +468,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const cart = getCart()
 
-        if (!name || !phone || !address) {
+        if (!name || !address) {
           showNotification("Заполните все поля", "bg-red-600")
           return
         }
-
-        // Удаляем валидацию формата телефона, так как формат уже контролируется в input handler
-        // и просто очищаем номер от форматирования для отправки в базу данных
-        const cleanedPhone = phone.replace(/\D/g, "")
 
         if (!cart || cart.length === 0) {
           showNotification("Ваша корзина пуста", "bg-red-600")
@@ -416,7 +489,7 @@ document.addEventListener("DOMContentLoaded", () => {
           },
           body: JSON.stringify({
             name,
-            phone: cleanedPhone, // Отправляем очищенный номер телефона
+            phone, // Добавляем номер телефона в запрос
             address,
             payment_method: paymentMethod,
             cart_items: cart,
@@ -438,7 +511,25 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 200)
           }, 2000)
         } else {
-          showNotification(data.message || "Ошибка при оформлении заказа", "bg-red-600")
+          // Обработка различных ошибок
+          if (data.message === "auth_required") {
+            // Пользователь не авторизован
+            showNotification("Для оформления заказа необходимо войти в аккаунт", "bg-red-600")
+
+            // Закрываем модальное окно корзины
+            modal.classList.add("scale-0")
+            setTimeout(() => {
+              modal.classList.add("hidden")
+
+              // Открываем модальное окно входа
+              const loginModal = document.getElementById("loginModal")
+              if (loginModal) {
+                loginModal.classList.remove("hidden", "scale-0")
+              }
+            }, 200)
+          } else {
+            showNotification(data.message || "Ошибка при оформлении заказа", "bg-red-600")
+          }
         }
       } catch (error) {
         console.error("Ошибка при оформлении заказа:", error)

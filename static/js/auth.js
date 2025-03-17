@@ -225,4 +225,3 @@ function showRegisterModal() {
     registerModal.classList.remove("hidden", "scale-0")
   }
 }
-
