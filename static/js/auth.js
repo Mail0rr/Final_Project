@@ -197,21 +197,23 @@ function updateAuthUI(isLoggedIn) {
 
   if (isLoggedIn) {
     authElement.innerHTML = `
-      <span class="material-icons text-yellow-500">logout</span>
+      <img src="/static/images/logout.png" alt="logout" class="w-7 h-7">
       LOG OUT
     `
     authElement.href = "/logout"
     authElement.id = "" // Удаляем id, чтобы не срабатывал обработчик registerButton
+    authElement.className = "flex items-center gap-2 text-xl hover:text-yellow-400"
 
     // Удаляем обработчик события, если он был
     authElement.removeEventListener("click", showRegisterModal)
   } else {
     authElement.innerHTML = `
-      <span class="material-icons text-yellow-500">login</span>
-      SIGN UP
+      <img src="/static/images/login.png" alt="login" class="w-7 h-7">
+      LOG IN
     `
     authElement.id = "registerButton"
     authElement.href = "#"
+    authElement.className = "flex items-center gap-2 text-xl hover:text-yellow-400"
 
     // Добавляем обработчик для кнопки регистрации
     authElement.addEventListener("click", showRegisterModal)
@@ -232,4 +234,3 @@ function showRegisterModal() {
     registerModal.classList.remove("hidden", "scale-0")
   }
 }
-
