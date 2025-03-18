@@ -11,7 +11,7 @@ dishes = [
         "id": 2,
         "name": "Суши",
         "image": "https://noa.ua/wp-content/uploads/2023/11/kombo-sajt-eksp.jpg",
-        "description": "Вкуснейший рис с морепродуктами, завернутый в нори.",
+        "description": "Рис с морепродуктами, завернутый в нори.",
         "price": 520,
         "ingredients": ["Рис", "Рыба", "Нори", "Соевый соус", "Имбирь"]
     },
@@ -391,7 +391,7 @@ drinks = [
 desserts = [
     {
         "id": 1,
-        "name": "Моти",
+        "name": "Моти классические",
         "image": "https://static.nv.ua/shared/system/MediaPhoto/images/000/488/475/original/9af94ffe6dcea45369a8ff50d0ffa1da.png?q=85&stamp=20240517140603&f=jpg",
         "description": "Японский десерт из клейкого риса с различными начинками.",
         "price": 180,

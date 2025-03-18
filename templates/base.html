@@ -20,13 +20,13 @@
                     <li>
                         {% if session.get('user_id') %}
                         <a href="{{ url_for('logout') }}" class="flex items-center gap-2 text-xl hover:text-yellow-400">
-                            <span class="material-icons text-yellow-500">logout</span>
+                            <img src="{{ url_for('static', filename='images/logout.png') }}" alt="logout" class="w-7 h-7">
                             LOG OUT
                         </a>
                         {% else %}
                         <a href="#" id="registerButton" class="flex items-center gap-2 text-xl hover:text-yellow-400">
-                            <span class="material-icons text-yellow-500">login</span>
-                            SIGN UP
+                            <img src="{{ url_for('static', filename='images/login.png') }}" alt="login" class="w-7 h-7">
+                            LOG IN
                         </a>
                         {% endif %}
                     </li>
