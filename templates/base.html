@@ -12,7 +12,6 @@
 
 <body class="bg-gray-800 text-white flex flex-col min-h-screen">
     <header class="bg-gray-900 text-white py-4 px-9 flex justify-between items-center fixed top-0 left-0 right-0 z-50">
-        <!-- Левая часть: Логотип и навигация -->
         <div class="flex items-center gap-10">
             <a href="{{ url_for('home') }}" class="text-3xl font-bold">Asian Restaurant</a>
             <nav>
@@ -41,7 +40,6 @@
                             <li><a href="/menu/#dessert" class="block px-4 py-2 hover:bg-gray-700">Desserts</a></li>
                         </ul>
                     </li>
-                    <!-- Изменяем кнопку заказов, чтобы она всегда была видна -->
                     <li>
                         <a href="#" id="ordersButton" class="flex items-center gap-2 text-xl hover:text-yellow-400">
                             <img src="{{ url_for('static', filename='images/my_orders.png') }}" alt="My Orders" class="w-7 h-7">
@@ -57,6 +55,7 @@
                 </ul>
             </nav>
         </div>
+
         <div class="relative flex justify-center z-10">
             <div class="relative w-[500px]">
                 <input type="text" id="searchInput" placeholder="🔍 Поиск..." class="w-full bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"/>
@@ -119,7 +118,6 @@
                 <button id="closeOrders" class="text-red-500 text-4xl">&times;</button>
             </div>
             <div class="mt-6 max-h-96 overflow-y-auto p-3">
-                <!-- Здесь будут отображаться заказы -->
                 <p class="text-gray-300 text-lg">У вас нет заказов.</p>
             </div>
         </div>
@@ -135,14 +133,12 @@
                 <button id="closeBasket" class="text-red-500 text-4xl">&times;</button>
             </div>
 
-            <!-- Cart Tab Content -->
             <div id="cartContent" class="cart-content active">
                 <div class="mt-6 max-h-96 overflow-y-auto p-3">
                     <div id="cartItems">
                         <p class="text-gray-300 text-lg">Ваша корзина пуста.</p>
                     </div>
 
-                    <!-- Pagination controls -->
                     <div id="cartPagination" class="flex justify-center items-center gap-4 mt-4 hidden">
                         <button id="prevPage" class="px-3 py-1 bg-gray-700 rounded-lg disabled:opacity-50">←</button>
                         <span id="pageInfo">1 / 1</span>
@@ -164,7 +160,6 @@
                 </div>
             </div>
 
-            <!-- Order Form Tab Content -->
             <div id="orderContent" class="order-content hidden">
                 <div class="mt-6 p-3">
                     <form id="orderForm" class="flex flex-col gap-4">
@@ -243,6 +238,7 @@
     </style>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
     <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
     <script src="{{ url_for('static', filename='js/orders.js') }}"></script>
     <script src="{{ url_for('static', filename='js/basket.js') }}"></script>
