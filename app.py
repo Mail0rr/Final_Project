@@ -34,6 +34,7 @@ def create_users_table():
     conn.commit()
     conn.close()
 
+
 create_users_table()
 
 
@@ -128,7 +129,6 @@ def api_login():
 
 @app.route("/api/check-auth")
 def check_auth():
-    """Проверяет статус авторизации пользователя и возвращает его данные"""
     if 'user_id' in session:
         conn = get_user_db_connection()
         user = conn.execute('SELECT username, phone FROM users WHERE id = ?', (session['user_id'],)).fetchone()
@@ -154,12 +154,15 @@ def check_auth():
 def logout():
     if 'user_id' not in session:
         return redirect(url_for('home'))
+
     referrer = request.referrer or url_for('home')
+
     return render_template('logout_confirm.html', referrer=referrer)
 
 
 @app.route("/logout/confirm")
 def logout_confirm():
+    # Удаляем данные сессии
     session.pop('user_id', None)
     session.pop('username', None)
     return redirect(url_for('home'))
@@ -259,6 +262,7 @@ def dessert_detail(dessert_id):
 def place_order():
     try:
         data = request.json
+
         if not data or not all(key in data for key in ['name', 'address', 'payment_method', 'cart_items']):
             return jsonify({
                 "success": False,
@@ -284,6 +288,7 @@ def place_order():
             }), 404
 
         phone = user['phone']
+
         if 'phone' in data and data['phone']:
             phone = data['phone']
 
@@ -432,6 +437,7 @@ def get_orders():
                 }), 404
 
             phone = user['phone']
+
             orders = conn.execute('''
                 SELECT id, name, phone, address, payment_method, items_list, total_amount, status, created_at
                 FROM orders 
