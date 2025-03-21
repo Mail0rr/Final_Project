@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import os
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)  # Секретный ключ для сессий
+app.secret_key = os.urandom(24)
 
 
 def get_db_connection():
@@ -20,7 +20,6 @@ def get_user_db_connection():
     return conn
 
 
-# Создаем таблицу пользователей, если она не существует
 def create_users_table():
     conn = get_user_db_connection()
     cursor = conn.cursor()
@@ -35,19 +34,17 @@ def create_users_table():
     conn.commit()
     conn.close()
 
-
-# Вызываем функцию создания таблицы при запуске
 create_users_table()
 
 
 @app.route("/")
 def home():
-  conn = get_db_connection()
-  popular_dishes = conn.execute('SELECT * FROM dishes WHERE id IN (1, 2, 16)').fetchall()
-  popular_drinks = conn.execute('SELECT * FROM drinks WHERE id IN (1, 4, 16)').fetchall()
-  popular_desserts = conn.execute('SELECT * FROM desserts WHERE id IN (1, 13, 14)').fetchall()
-  conn.close()
-  return render_template("home.html", dishes=popular_dishes, drinks=popular_drinks, desserts=popular_desserts)
+    conn = get_db_connection()
+    popular_dishes = conn.execute('SELECT * FROM dishes WHERE id IN (1, 2, 16)').fetchall()
+    popular_drinks = conn.execute('SELECT * FROM drinks WHERE id IN (1, 4, 16)').fetchall()
+    popular_desserts = conn.execute('SELECT * FROM desserts WHERE id IN (1, 13, 14)').fetchall()
+    conn.close()
+    return render_template("home.html", dishes=popular_dishes, drinks=popular_drinks, desserts=popular_desserts)
 
 
 @app.route("/order/")
@@ -96,7 +93,6 @@ def api_register():
         user_id = cursor.lastrowid
         conn.commit()
 
-        # Автоматически входим пользователя после регистрации
         session['user_id'] = user_id
         session['username'] = username
 
@@ -122,7 +118,6 @@ def api_login():
     conn.close()
 
     if user and check_password_hash(user['password'], password):
-        # Устанавливаем сессию пользователя
         session['user_id'] = user['id']
         session['username'] = user['username']
 
@@ -140,7 +135,6 @@ def check_auth():
         conn.close()
 
         if user:
-            # Форматируем номер телефона для отображения
             phone = user['phone']
             if phone and len(phone) >= 10:
                 formatted_phone = f"+380 ({phone[:2]}) {phone[2:5]} {phone[5:7]} {phone[7:9]}"
@@ -160,17 +154,12 @@ def check_auth():
 def logout():
     if 'user_id' not in session:
         return redirect(url_for('home'))
-
-    # Получаем URL страницы, с которой пришел пользователь
     referrer = request.referrer or url_for('home')
-
-    # Показываем страницу подтверждения выхода
     return render_template('logout_confirm.html', referrer=referrer)
 
 
 @app.route("/logout/confirm")
 def logout_confirm():
-    # Удаляем данные сессии
     session.pop('user_id', None)
     session.pop('username', None)
     return redirect(url_for('home'))
@@ -270,15 +259,12 @@ def dessert_detail(dessert_id):
 def place_order():
     try:
         data = request.json
-
-        # Изменяем проверку обязательных полей, убираем 'phone' из списка
         if not data or not all(key in data for key in ['name', 'address', 'payment_method', 'cart_items']):
             return jsonify({
                 "success": False,
                 "message": "Missing required fields"
             }), 400
 
-        # Проверка авторизации пользователя
         if 'user_id' not in session:
             return jsonify({
                 "success": False,
@@ -286,7 +272,6 @@ def place_order():
                 "details": "Для оформления заказа необходимо войти в аккаунт"
             }), 403
 
-        # Получаем данные пользователя из БД
         conn_user = get_user_db_connection()
         user = conn_user.execute('SELECT username, phone FROM users WHERE id = ?', (session['user_id'],)).fetchone()
         conn_user.close()
@@ -298,10 +283,7 @@ def place_order():
                 "details": "Пользователь не найден"
             }), 404
 
-        # Используем номер телефона из базы данных пользователей
         phone = user['phone']
-
-        # Если в запросе есть номер телефона, используем его вместо номера из БД
         if 'phone' in data and data['phone']:
             phone = data['phone']
 
@@ -311,28 +293,39 @@ def place_order():
         cursor.execute("PRAGMA table_info(orders)")
         columns = [column[1] for column in cursor.fetchall()]
 
-        if 'orders' in get_table_names(conn) and 'name' not in columns:
-            cursor.execute("ALTER TABLE orders RENAME TO orders_old")
+        if 'orders' in get_table_names(conn):
+            if 'user_id' not in columns:
+                cursor.execute("ALTER TABLE orders RENAME TO orders_old")
 
-            cursor.execute('''
-            CREATE TABLE orders (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                name TEXT NOT NULL,
-                phone TEXT NOT NULL,
-                address TEXT NOT NULL,
-                payment_method TEXT NOT NULL,
-                items_list TEXT NOT NULL,
-                total_amount REAL NOT NULL,
-                status TEXT NOT NULL,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
-            ''')
+                cursor.execute('''
+                CREATE TABLE orders (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    user_id INTEGER NOT NULL,
+                    name TEXT NOT NULL,
+                    phone TEXT NOT NULL,
+                    address TEXT NOT NULL,
+                    payment_method TEXT NOT NULL,
+                    items_list TEXT NOT NULL,
+                    total_amount REAL NOT NULL,
+                    status TEXT NOT NULL,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (user_id) REFERENCES users (id)
+                )
+                ''')
 
-            cursor.execute("DROP TABLE orders_old")
+                cursor.execute('''
+                INSERT INTO orders (user_id, name, phone, address, payment_method, items_list, total_amount, status, created_at)
+                SELECT 1, name, phone, address, payment_method, items_list, total_amount, status, created_at
+                FROM orders_old
+                ''')
+
+                cursor.execute("DROP TABLE orders_old")
+
         else:
             cursor.execute('''
             CREATE TABLE IF NOT EXISTS orders (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER NOT NULL,
                 name TEXT NOT NULL,
                 phone TEXT NOT NULL,
                 address TEXT NOT NULL,
@@ -340,7 +333,8 @@ def place_order():
                 items_list TEXT NOT NULL,
                 total_amount REAL NOT NULL,
                 status TEXT NOT NULL,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (user_id) REFERENCES users (id)
             )
             ''')
 
@@ -363,10 +357,11 @@ def place_order():
             items_list = ', '.join([f"{item['name']} ({item['quantity']} шт.)" for item in data['cart_items']])
 
         cursor.execute('''
-        INSERT INTO orders (name, phone, address, payment_method, items_list, total_amount, status)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO orders (user_id, name, phone, address, payment_method, items_list, total_amount, status)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
-            data['name'], phone, data['address'], data['payment_method'], items_list, total_amount, 'pending'))
+            session['user_id'], data['name'], phone, data['address'], data['payment_method'],
+            items_list, total_amount, 'pending'))
 
         order_id = cursor.lastrowid
 
@@ -401,9 +396,7 @@ def get_table_names(conn):
 
 @app.route("/api/get-orders")
 def get_orders():
-    """Получает историю заказов для авторизованного пользователя"""
     try:
-        # Проверяем, авторизован ли пользователь
         if 'user_id' not in session:
             return jsonify({
                 "success": False,
@@ -411,54 +404,57 @@ def get_orders():
                 "details": "Для просмотра заказов необходимо войти в аккаунт"
             }), 403
 
-        # Получаем данные пользователя из БД
-        conn_user = get_user_db_connection()
-        user = conn_user.execute('SELECT username, phone FROM users WHERE id = ?', (session['user_id'],)).fetchone()
-        conn_user.close()
+        user_id = session['user_id']
 
-        if not user:
-            return jsonify({
-                "success": False,
-                "message": "user_not_found",
-                "details": "Пользователь не найден"
-            }), 404
-
-        # Получаем номер телефона пользователя для поиска заказов
-        phone = user['phone']
-
-        # Подключаемся к базе данных заказов
         conn = get_db_connection()
 
-        # Получаем все заказы пользователя, отсортированные по дате (от новых к старым)
-        orders = conn.execute('''
-            SELECT id, name, phone, address, payment_method, items_list, total_amount, status, created_at
-            FROM orders 
-            WHERE phone = ? 
-            ORDER BY created_at DESC
-        ''', (phone,)).fetchall()
+        cursor = conn.cursor()
+        cursor.execute("PRAGMA table_info(orders)")
+        columns = [column[1] for column in cursor.fetchall()]
+
+        if 'user_id' in columns:
+            orders = conn.execute('''
+                SELECT id, name, phone, address, payment_method, items_list, total_amount, status, created_at
+                FROM orders 
+                WHERE user_id = ? 
+                ORDER BY created_at DESC
+            ''', (user_id,)).fetchall()
+        else:
+            conn_user = get_user_db_connection()
+            user = conn_user.execute('SELECT username, phone FROM users WHERE id = ?', (user_id,)).fetchone()
+            conn_user.close()
+
+            if not user:
+                return jsonify({
+                    "success": False,
+                    "message": "user_not_found",
+                    "details": "Пользователь не найден"
+                }), 404
+
+            phone = user['phone']
+            orders = conn.execute('''
+                SELECT id, name, phone, address, payment_method, items_list, total_amount, status, created_at
+                FROM orders 
+                WHERE phone = ? 
+                ORDER BY created_at DESC
+            ''', (phone,)).fetchall()
 
         conn.close()
 
-        # Преобразуем результаты в список словарей
         orders_list = []
         for order in orders:
-            # Корректируем временную метку для часового пояса Украины (+2 часа)
             created_at = order['created_at']
             if created_at:
-                # Парсим временную метку
                 try:
-                    # Если это строка, парсим её
                     if isinstance(created_at, str):
                         dt = datetime.strptime(created_at, '%Y-%m-%d %H:%M:%S')
                     else:
                         dt = created_at
 
-                    # Добавляем 2 часа для часового пояса Украины
                     dt = dt + timedelta(hours=2)
                     created_at = dt.strftime('%Y-%m-%d %H:%M:%S')
                 except Exception as e:
                     print(f"Ошибка при парсинге даты: {e}")
-                    # Оставляем оригинал, если парсинг не удался
 
             orders_list.append({
                 "id": order['id'],
