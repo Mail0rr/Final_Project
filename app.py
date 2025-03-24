@@ -73,7 +73,7 @@ def api_register():
     password = data.get('password')
 
     if not username or not phone or not password:
-        return jsonify(success=False, message="Все поля должны быть заполнены")
+        return jsonify(success=False, message="Усі поля повинні бути заповнені")
 
     conn = get_user_db_connection()
     existing_user = conn.execute('SELECT * FROM users WHERE username = ? OR phone = ?',
@@ -82,9 +82,9 @@ def api_register():
     if existing_user:
         conn.close()
         if existing_user['username'] == username:
-            return jsonify(success=False, message="Пользователь с таким именем уже существует")
+            return jsonify(success=False, message="Користувач з таким ім'ям вже існує")
         else:
-            return jsonify(success=False, message="Номер телефона уже используется")
+            return jsonify(success=False, message="Номер телефону вже використовується")
 
     hashed_password = generate_password_hash(password)
 
@@ -99,10 +99,10 @@ def api_register():
 
         conn.close()
 
-        return jsonify(success=True, message="Регистрация успешна", redirect="/", username=username)
+        return jsonify(success=True, message="Реєстрація успішна", redirect="/", username=username)
     except Exception as e:
         conn.close()
-        return jsonify(success=False, message=f"Ошибка при регистрации: {str(e)}")
+        return jsonify(success=False, message=f"Помилка при реєстрації: {str(e)}")
 
 
 @app.route("/api/login", methods=['POST'])
@@ -112,7 +112,7 @@ def api_login():
     password = data.get('password')
 
     if not username or not password:
-        return jsonify(success=False, message="Все поля должны быть заполнены")
+        return jsonify(success=False, message="Усі поля повинні бути заповнені")
 
     conn = get_user_db_connection()
     user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
@@ -122,9 +122,9 @@ def api_login():
         session['user_id'] = user['id']
         session['username'] = user['username']
 
-        return jsonify(success=True, message="Вход выполнен успешно", redirect="/", username=username)
+        return jsonify(success=True, message="Вхід виконано успішно", redirect="/", username=username)
     else:
-        return jsonify(success=False, message="Неверное имя пользователя или пароль")
+        return jsonify(success=False, message="Невірне ім'я користувача або пароль")
 
 
 @app.route("/api/check-auth")
@@ -162,7 +162,7 @@ def logout():
 
 @app.route("/logout/confirm")
 def logout_confirm():
-    # Удаляем данные сессии
+    # Видаляємо дані сесії
     session.pop('user_id', None)
     session.pop('username', None)
     return redirect(url_for('home'))
@@ -234,7 +234,7 @@ def dish_detail(dish_id):
     dish_item = conn.execute('SELECT * FROM dishes WHERE id = ?', (dish_id,)).fetchone()
     conn.close()
     if not dish_item:
-        return "Блюдо не найдено", 404
+        return "Страву не знайдено", 404
     return render_template("dish.html", dish=dish_item)
 
 
@@ -244,7 +244,7 @@ def drink_detail(drink_id):
     drink_item = conn.execute('SELECT * FROM drinks WHERE id = ?', (drink_id,)).fetchone()
     conn.close()
     if not drink_item:
-        return "Напиток не найден", 404
+        return "Напій не знайдено", 404
     return render_template("drink.html", drink=drink_item)
 
 
@@ -254,7 +254,7 @@ def dessert_detail(dessert_id):
     dessert_item = conn.execute('SELECT * FROM desserts WHERE id = ?', (dessert_id,)).fetchone()
     conn.close()
     if not dessert_item:
-        return "Десерт не найден", 404
+        return "Десерт не знайдено", 404
     return render_template("dessert.html", dessert=dessert_item)
 
 
@@ -273,7 +273,7 @@ def place_order():
             return jsonify({
                 "success": False,
                 "message": "auth_required",
-                "details": "Для оформления заказа необходимо войти в аккаунт"
+                "details": "Для оформлення замовлення необхідно увійти в акаунт"
             }), 403
 
         conn_user = get_user_db_connection()
@@ -284,7 +284,7 @@ def place_order():
             return jsonify({
                 "success": False,
                 "message": "user_not_found",
-                "details": "Пользователь не найден"
+                "details": "Користувача не знайдено"
             }), 404
 
         phone = user['phone']
@@ -381,7 +381,7 @@ def place_order():
 
         return jsonify({
             "success": True,
-            "message": "Заказ успешно оформлен",
+            "message": "Замовлення успішно оформлено",
             "order_id": order_id
         })
 
@@ -389,7 +389,7 @@ def place_order():
         print(f"Error placing order: {str(e)}")
         return jsonify({
             "success": False,
-            "message": f"Произошла ошибка при оформлении заказа: {str(e)}"
+            "message": f"Сталася помилка при оформленні замовлення: {str(e)}"
         }), 500
 
 
@@ -406,7 +406,7 @@ def get_orders():
             return jsonify({
                 "success": False,
                 "message": "auth_required",
-                "details": "Для просмотра заказов необходимо войти в аккаунт"
+                "details": "Для перегляду замовлень необхідно увійти в акаунт"
             }), 403
 
         user_id = session['user_id']
@@ -433,7 +433,7 @@ def get_orders():
                 return jsonify({
                     "success": False,
                     "message": "user_not_found",
-                    "details": "Пользователь не найден"
+                    "details": "Користувача не знайдено"
                 }), 404
 
             phone = user['phone']
@@ -460,7 +460,7 @@ def get_orders():
                     dt = dt + timedelta(hours=2)
                     created_at = dt.strftime('%Y-%m-%d %H:%M:%S')
                 except Exception as e:
-                    print(f"Ошибка при парсинге даты: {e}")
+                    print(f"Помилка при парсингу дати: {e}")
 
             orders_list.append({
                 "id": order['id'],
@@ -480,12 +480,12 @@ def get_orders():
         })
 
     except Exception as e:
-        print(f"Ошибка при получении заказов: {str(e)}")
+        print(f"Помилка при отриманні замовлень: {str(e)}")
         return jsonify({
             "success": False,
-            "message": f"Произошла ошибка при получении заказов: {str(e)}"
+            "message": f"Сталася помилка при отриманні замовлень: {str(e)}"
         }), 500
 
 
 if __name__ == "__main__":
-    app.run(port=5050, debug=True)
+    app.run(debug=True, host="0.0.0.0", port=8743)

@@ -3,14 +3,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const cardPayment = document.getElementById("cardPayment")
 
   if (cashPayment && cardPayment) {
-    // Убедимся, что при загрузке страницы выбран правильный метод
+    // Переконаємося, що при завантаженні сторінки вибрано правильний метод
     if (cashPayment.checked) {
       document.querySelector('label[for="cashPayment"]').classList.add("border-yellow-400")
     } else if (cardPayment.checked) {
       document.querySelector('label[for="cardPayment"]').classList.add("border-yellow-400")
     }
 
-    // Добавляем анимацию при выборе
+    // Додаємо анімацію при виборі
     cashPayment.addEventListener("change", () => {
       if (cashPayment.checked) {
         document.querySelector('label[for="cashPayment"]').classList.add("border-yellow-400")
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextPageBtn = document.getElementById("nextPage")
   const pageInfo = document.getElementById("pageInfo")
 
-  console.log("Скрипт корзины загружен")
+  console.log("Скрипт кошика завантажено")
 
   // Pagination state
   let currentPage = 0
@@ -55,14 +55,14 @@ document.addEventListener("DOMContentLoaded", () => {
   if (basketButton) {
     basketButton.addEventListener("click", (event) => {
       event.preventDefault()
-      console.log("Кнопка корзины нажата")
+      console.log("Кнопка кошика натиснута")
       updateCartDisplay()
       if (modal) {
         modal.classList.remove("hidden", "scale-0")
         modal.classList.add("flex", "scale-100")
-        console.log("Модальное окно открыто")
+        console.log("Модальне вікно відкрито")
 
-        // Если активна вкладка оформления, заполняем форму данными пользователя
+        // Якщо активна вкладка оформлення, заповнюємо форму даними користувача
         if (orderContent && !orderContent.classList.contains("hidden")) {
           fillOrderFormWithUserData()
         }
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (closeBtn) {
     closeBtn.addEventListener("click", () => {
-      console.log("Кнопка закрытия нажата")
+      console.log("Кнопка закриття натиснута")
       if (modal) {
         modal.classList.add("scale-0")
         setTimeout(() => {
@@ -106,27 +106,27 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  // Обновим обработчик кнопки "Оформить заказ"
+  // Оновимо обробник кнопки "Оформити замовлення"
   if (proceedToOrderButton) {
     proceedToOrderButton.addEventListener("click", () => {
-      // Проверяем, авторизован ли пользователь
+      // Перевіряємо, чи авторизований користувач
       fetch("/api/check-auth")
         .then((response) => response.json())
         .then((data) => {
           if (data.authenticated) {
-            // Если пользователь авторизован, переходим к оформлению заказа
+            // Якщо користувач авторизований, переходимо до оформлення замовлення
             switchTab("order")
             fillOrderFormWithUserData()
           } else {
-            // Если пользователь не авторизован, показываем уведомление
-            showNotification("Для оформления заказа необходимо войти в аккаунт", "bg-red-600")
+            // Якщо користувач не авторизований, показуємо повідомлення
+            showNotification("Для оформлення замовлення необхідно увійти в акаунт", "bg-red-600")
 
-            // Закрываем модальное окно корзины
+            // Закриваємо модальне вікно кошика
             modal.classList.add("scale-0")
             setTimeout(() => {
               modal.classList.add("hidden")
 
-              // Открываем модальное окно входа
+              // Відкриваємо модальне вікно входу
               const loginModal = document.getElementById("loginModal")
               if (loginModal) {
                 loginModal.classList.remove("hidden", "scale-0")
@@ -135,8 +135,8 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         })
         .catch((error) => {
-          console.error("Ошибка при проверке авторизации:", error)
-          showNotification("Произошла ошибка при проверке авторизации", "bg-red-600")
+          console.error("Помилка при перевірці авторизації:", error)
+          showNotification("Сталася помилка при перевірці авторизації", "bg-red-600")
         })
     })
   }
@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const cartData = localStorage.getItem("cart")
       return cartData ? JSON.parse(cartData) : []
     } catch (error) {
-      console.error("Ошибка при получении корзины:", error)
+      console.error("Помилка при отриманні кошика:", error)
       return []
     }
   }
@@ -181,8 +181,8 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       localStorage.setItem("cart", JSON.stringify(cart))
     } catch (error) {
-      console.error("Ошибка при сохранении корзины:", error)
-      showNotification("Ошибка при сохранении корзины", "bg-red-600")
+      console.error("Помилка при збереженні кошика:", error)
+      showNotification("Помилка при збереженні кошика", "bg-red-600")
     }
   }
 
@@ -190,10 +190,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!cartItems) return
 
     const cart = getCart()
-    console.log("Текущая корзина:", cart)
+    console.log("Поточний кошик:", cart)
 
     if (!cart || cart.length === 0) {
-      cartItems.innerHTML = '<p class="text-gray-300 text-lg">Ваша корзина пуста.</p>'
+      cartItems.innerHTML = '<p class="text-gray-300 text-lg">Ваш кошик порожній.</p>'
       if (pagination) pagination.classList.add("hidden")
       updateTotals(0)
       return
@@ -269,7 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const cart = getCart()
 
     if (!cart || cart.length === 0) {
-      summaryContainer.innerHTML = '<p class="text-gray-300">Корзина пуста</p>'
+      summaryContainer.innerHTML = '<p class="text-gray-300">Кошик порожній</p>'
       return
     }
 
@@ -289,7 +289,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function attachCartEventHandlers() {
     if (!cartItems) return
 
-    // Обработчики для кнопок удаления
+    // Обробники для кнопок видалення
     const removeButtons = cartItems.querySelectorAll(".remove-item")
     removeButtons.forEach((button) => {
       button.addEventListener("click", function () {
@@ -297,13 +297,13 @@ document.addEventListener("DOMContentLoaded", () => {
           const index = Number.parseInt(this.getAttribute("data-index") || "0")
           removeFromCart(index)
         } catch (error) {
-          console.error("Ошибка при удалении товара:", error)
-          showNotification("Ошибка при удалении товара", "bg-red-600")
+          console.error("Помилка при видаленні товару:", error)
+          showNotification("Помилка при видаленні товару", "bg-red-600")
         }
       })
     })
 
-    // Обработчики для кнопок изменения количества
+    // Обробники для кнопок зміни кількості
     const increaseButtons = cartItems.querySelectorAll(".increase-quantity")
     increaseButtons.forEach((button) => {
       button.addEventListener("click", function () {
@@ -311,8 +311,8 @@ document.addEventListener("DOMContentLoaded", () => {
           const index = Number.parseInt(this.getAttribute("data-index") || "0")
           updateQuantity(index, 1)
         } catch (error) {
-          console.error("Ошибка при увеличении количества:", error)
-          showNotification("Ошибка при изменении количества", "bg-red-600")
+          console.error("Помилка при збільшенні кількості:", error)
+          showNotification("Помилка при зміні кількості", "bg-red-600")
         }
       })
     })
@@ -324,8 +324,8 @@ document.addEventListener("DOMContentLoaded", () => {
           const index = Number.parseInt(this.getAttribute("data-index") || "0")
           updateQuantity(index, -1)
         } catch (error) {
-          console.error("Ошибка при уменьшении количества:", error)
-          showNotification("Ошибка при изменении количества", "bg-red-600")
+          console.error("Помилка при зменшенні кількості:", error)
+          showNotification("Помилка при зміні кількості", "bg-red-600")
         }
       })
     })
@@ -360,11 +360,11 @@ document.addEventListener("DOMContentLoaded", () => {
         cart.splice(index, 1)
         saveCart(cart)
         updateCartDisplay()
-        showNotification("Товар удален из корзины", "bg-lime-600")
+        showNotification("Товар видалено з кошика", "bg-lime-600")
       }
     } catch (error) {
-      console.error("Ошибка при удалении из корзины:", error)
-      showNotification("Ошибка при удалении товара", "bg-red-600")
+      console.error("Помилка при видаленні з кошика:", error)
+      showNotification("Помилка при видаленні товару", "bg-red-600")
     }
   }
 
@@ -375,16 +375,16 @@ document.addEventListener("DOMContentLoaded", () => {
         cart[index].quantity += change
         if (cart[index].quantity < 1) {
           cart.splice(index, 1)
-          showNotification("Товар удален из корзины", "bg-lime-600")
+          showNotification("Товар видалено з кошика", "bg-lime-600")
         } else {
-          showNotification("Количество изменено", "bg-lime-600")
+          showNotification("Кількість змінено", "bg-lime-600")
         }
         saveCart(cart)
         updateCartDisplay()
       }
     } catch (error) {
-      console.error("Ошибка при изменении количества:", error)
-      showNotification("Ошибка при изменении количества", "bg-red-600")
+      console.error("Помилка при зміні кількості:", error)
+      showNotification("Помилка при зміні кількості", "bg-red-600")
     }
   }
 
@@ -395,28 +395,28 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         localStorage.removeItem("cart")
         updateCartDisplay()
-        showNotification("Корзина очищена", "bg-lime-600")
+        showNotification("Кошик очищено", "bg-lime-600")
       } catch (error) {
-        console.error("Ошибка при очистке корзины:", error)
-        showNotification("Ошибка при очистке корзины", "bg-red-600")
+        console.error("Помилка при очищенні кошика:", error)
+        showNotification("Помилка при очищенні кошика", "bg-red-600")
       }
     })
   }
 
-  // Функция для автоматического заполнения формы заказа данными пользователя
+  // Функція для автоматичного заповнення форми замовлення даними користувача
   function fillOrderFormWithUserData() {
-    // Проверяем, авторизован ли пользователь
+    // Перевіряємо, чи авторизований користувач
     fetch("/api/check-auth")
       .then((response) => response.json())
       .then((data) => {
         if (data.authenticated) {
-          // Заполняем имя пользователя
+          // Заповнюємо ім'я користувача
           const nameInput = document.getElementById("orderName")
           if (nameInput) {
             nameInput.value = data.username
           }
 
-          // Заполняем номер телефона и делаем его доступным для редактирования
+          // Заповнюємо номер телефону і робимо його доступним для редагування
           const phoneInput = document.getElementById("phoneInputOrder")
           const phonePlaceholder = document.getElementById("phonePlaceholderOrder")
 
@@ -424,10 +424,10 @@ document.addEventListener("DOMContentLoaded", () => {
             phonePlaceholder.classList.add("hidden")
             phoneInput.classList.remove("hidden")
             phoneInput.value = data.phone
-            phoneInput.readOnly = false // Делаем поле доступным для редактирования
-            phoneInput.classList.remove("bg-gray-600") // Убираем визуальное отображение недоступности
+            phoneInput.readOnly = false // Робимо поле доступним для редагування
+            phoneInput.classList.remove("bg-gray-600") // Прибираємо візуальне відображення недоступності
 
-            // Добавляем подсказку о том, что номер телефона можно изменить
+            // Додаємо підказку про те, що номер телефону можна змінити
             let phoneHint = document.getElementById("phoneHint")
             if (!phoneHint) {
               phoneHint = document.createElement("div")
@@ -436,12 +436,12 @@ document.addEventListener("DOMContentLoaded", () => {
               phoneInput.parentNode.appendChild(phoneHint)
             }
 
-            phoneHint.textContent = "Вы можете изменить номер телефона"
+            phoneHint.textContent = "Ви можете змінити номер телефону"
           }
         }
       })
       .catch((error) => {
-        console.error("Ошибка при получении данных пользователя:", error)
+        console.error("Помилка при отриманні даних користувача:", error)
       })
   }
 
@@ -454,14 +454,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const name = document.getElementById("orderName").value
         const address = document.getElementById("orderAddress").value
 
-        // Получаем номер телефона из поля ввода
+        // Отримуємо номер телефону з поля вводу
         const phoneInput = document.getElementById("phoneInputOrder")
         const phone = phoneInput ? phoneInput.value : ""
 
         // Check if payment method is selected
         const paymentMethodElement = document.querySelector('input[name="paymentMethod"]:checked')
         if (!paymentMethodElement) {
-          showNotification("Выберите способ оплаты", "bg-red-600")
+          showNotification("Виберіть спосіб оплати", "bg-red-600")
           return
         }
         const paymentMethod = paymentMethodElement.value
@@ -469,19 +469,19 @@ document.addEventListener("DOMContentLoaded", () => {
         const cart = getCart()
 
         if (!name || !address) {
-          showNotification("Заполните все поля", "bg-red-600")
+          showNotification("Заповніть усі поля", "bg-red-600")
           return
         }
 
         if (!cart || cart.length === 0) {
-          showNotification("Ваша корзина пуста", "bg-red-600")
+          showNotification("Ваш кошик порожній", "bg-red-600")
           return
         }
 
-        // Формируем список товаров для отображения
+        // Формуємо список товарів для відображення
         const itemsList = cart.map((item) => `${item.name} (${item.quantity} шт.)`).join(", ")
 
-        // Отправляем заказ на сервер
+        // Відправляємо замовлення на сервер
         const response = await fetch("/api/place-order", {
           method: "POST",
           headers: {
@@ -489,7 +489,7 @@ document.addEventListener("DOMContentLoaded", () => {
           },
           body: JSON.stringify({
             name,
-            phone, // Добавляем номер телефона в запрос
+            phone, // Додаємо номер телефону в запит
             address,
             payment_method: paymentMethod,
             cart_items: cart,
@@ -501,9 +501,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (data.success) {
           localStorage.removeItem("cart")
-          showNotification("Заказ успешно оформлен", "bg-lime-600")
+          showNotification("Замовлення успішно оформлено", "bg-lime-600")
 
-          // Закрываем модальное окно через 2 секунды
+          // Закриваємо модальне вікно через 2 секунди
           setTimeout(() => {
             modal.classList.add("scale-0")
             setTimeout(() => {
@@ -511,38 +511,38 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 200)
           }, 2000)
         } else {
-          // Обработка различных ошибок
+          // Обробка різних помилок
           if (data.message === "auth_required") {
-            // Пользователь не авторизован
-            showNotification("Для оформления заказа необходимо войти в аккаунт", "bg-red-600")
+            // Користувач не авторизований
+            showNotification("Для оформлення замовлення необхідно увійти в акаунт", "bg-red-600")
 
-            // Закрываем модальное окно корзины
+            // Закриваємо модальне вікно кошика
             modal.classList.add("scale-0")
             setTimeout(() => {
               modal.classList.add("hidden")
 
-              // Открываем модальное окно входа
+              // Відкриваємо модальне вікно входу
               const loginModal = document.getElementById("loginModal")
               if (loginModal) {
                 loginModal.classList.remove("hidden", "scale-0")
               }
             }, 200)
           } else {
-            showNotification(data.message || "Ошибка при оформлении заказа", "bg-red-600")
+            showNotification(data.message || "Помилка при оформленні замовлення", "bg-red-600")
           }
         }
       } catch (error) {
-        console.error("Ошибка при оформлении заказа:", error)
-        showNotification("Произошла ошибка при оформлении заказа", "bg-red-600")
+        console.error("Помилка при оформленні замовлення:", error)
+        showNotification("Сталася помилка при оформленні замовлення", "bg-red-600")
       }
     })
   }
 
   // Add to cart functionality
   document.addEventListener("click", (event) => {
-    if (event.target.classList.contains("bg-lime-600") && event.target.textContent.trim() === "Добавить в корзину") {
+    if (event.target.classList.contains("bg-lime-600") && event.target.textContent.trim() === "Додати до кошика") {
       event.preventDefault()
-      console.log("Кнопка добавления в корзину нажата")
+      console.log("Кнопка додавання до кошика натиснута")
 
       try {
         const path = window.location.pathname
@@ -552,7 +552,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let itemPrice = 0
         let itemImage = ""
 
-        // Получаем данные о товаре
+        // Отримуємо дані про товар
         const nameElement = document.querySelector("h1")
         const priceElement = document.querySelector(".text-red-400")
         const imageElement = document.querySelector(".max-w-6xl img")
@@ -560,7 +560,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (nameElement && priceElement && imageElement) {
           itemName = nameElement.textContent || ""
 
-          // Безопасное извлечение цены
+          // Безпечне вилучення ціни
           const priceText = priceElement.textContent || ""
           const priceMatch = priceText.match(/(\d+)/)
           if (priceMatch && priceMatch[1]) {
@@ -569,7 +569,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           itemImage = imageElement.src
 
-          // Определяем тип и ID товара из URL
+          // Визначаємо тип і ID товару з URL
           if (path.includes("/dish/")) {
             itemType = "dish"
           } else if (path.includes("/drink/")) {
@@ -578,13 +578,13 @@ document.addEventListener("DOMContentLoaded", () => {
             itemType = "dessert"
           }
 
-          // Безопасное извлечение ID
+          // Безпечне вилучення ID
           const idMatch = path.match(/\/(\d+)\/?$/)
           if (idMatch && idMatch[1]) {
             itemId = Number.parseInt(idMatch[1])
           }
 
-          console.log("Добавляем товар:", {
+          console.log("Додаємо товар:", {
             type: itemType,
             id: itemId,
             name: itemName,
@@ -595,15 +595,15 @@ document.addEventListener("DOMContentLoaded", () => {
           if (itemName && itemPrice > 0 && itemImage && itemType && itemId > 0) {
             const cart = getCart()
 
-            // Проверяем, есть ли уже такой товар в корзине
+            // Перевіряємо, чи є вже такий товар у кошику
             const existingItemIndex = cart.findIndex((item) => item.type === itemType && item.id === itemId)
 
             if (existingItemIndex !== -1) {
-              // Если товар уже есть, увеличиваем количество
+              // Якщо товар вже є, збільшуємо кількість
               cart[existingItemIndex].quantity += 1
-              showNotification(`${itemName} (${cart[existingItemIndex].quantity} шт) в корзине`, "bg-lime-600")
+              showNotification(`${itemName} (${cart[existingItemIndex].quantity} шт) у кошику`, "bg-lime-600")
             } else {
-              // Если товара нет, добавляем новый
+              // Якщо товару немає, додаємо новий
               cart.push({
                 type: itemType,
                 id: itemId,
@@ -612,34 +612,34 @@ document.addEventListener("DOMContentLoaded", () => {
                 image: itemImage,
                 quantity: 1,
               })
-              showNotification(`${itemName} добавлен в корзину`, "bg-lime-600")
+              showNotification(`${itemName} додано до кошика`, "bg-lime-600")
             }
 
             saveCart(cart)
           } else {
-            console.error("Неверные данные товара:", {
+            console.error("Невірні дані товару:", {
               type: itemType,
               id: itemId,
               name: itemName,
               price: itemPrice,
               image: itemImage,
             })
-            showNotification("Ошибка при добавлении товара: неверные данные", "bg-red-600")
+            showNotification("Помилка при додаванні товару: невірні дані", "bg-red-600")
           }
         } else {
-          console.error("Не удалось найти элементы товара на странице")
-          showNotification("Ошибка при добавлении товара", "bg-red-600")
+          console.error("Не вдалося знайти елементи товару на сторінці")
+          showNotification("Помилка при додаванні товару", "bg-red-600")
         }
       } catch (error) {
-        console.error("Ошибка при добавлении товара:", error)
-        showNotification("Ошибка при добавлении товара", "bg-red-600")
+        console.error("Помилка при додаванні товару:", error)
+        showNotification("Помилка при додаванні товару", "bg-red-600")
       }
     }
   })
 
   // Notification function
   function showNotification(message, bgColor) {
-    console.log("Показываем уведомление:", message)
+    console.log("Показуємо повідомлення:", message)
 
     const notification = document.createElement("div")
 
@@ -691,15 +691,15 @@ document.addEventListener("DOMContentLoaded", () => {
       phonePlaceholder.classList.add("hidden")
       phoneInput.classList.remove("hidden")
       phoneInput.focus()
-      phoneInput.value = "+380 " // Дефолтный префикс
+      phoneInput.value = "+380 " // Дефолтний префікс
     })
 
     phoneInput.addEventListener("input", () => {
-      let numbers = phoneInput.value.replace(/\D/g, "") // Удаляем всё, кроме цифр
+      let numbers = phoneInput.value.replace(/\D/g, "") // Видаляємо все, крім цифр
       if (numbers.startsWith("380")) {
-        numbers = numbers.slice(3) // Убираем 380, так как оно уже есть
+        numbers = numbers.slice(3) // Прибираємо 380, оскільки воно вже є
       } else if (!numbers.startsWith("380")) {
-        numbers = numbers.slice(0) // Оставляем как есть
+        numbers = numbers.slice(0) // Залишаємо як є
       }
 
       let formattedNumber = "+380 "
@@ -714,7 +714,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     phoneInput.addEventListener("keydown", (event) => {
       if (event.key === "Backspace" && phoneInput.value.length <= 5) {
-        event.preventDefault() // Блокируем удаление "+380 "
+        event.preventDefault() // Блокуємо видалення "+380 "
       }
     })
 

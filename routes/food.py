@@ -2,519 +2,519 @@ dishes = [
     {
         "id": 1,
         "name": "Рамен",
-        "image": "https://static.insales-cdn.com/images/articles/1/1729/6629057/delicious-ramen-on-dark-surface.jpg",
-        "description": "Японский суп с пшеничной лапшой, мясом и овощами.",
+        "image": "/static/images/dishes_1.jpg",
+        "description": "Японський суп з пшеничною локшиною, м'ясом та овочами.",
         "price": 380,
-        "ingredients": ["Лапша", "Бульон", "Свинина", "Яйцо", "Зелёный лук"]
+        "ingredients": ["Локшина", "Бульйон", "Свинина", "Яйце", "Зелена цибуля"]
     },
     {
         "id": 2,
-        "name": "Суши",
-        "image": "https://noa.ua/wp-content/uploads/2023/11/kombo-sajt-eksp.jpg",
-        "description": "Рис с морепродуктами, завернутый в нори.",
+        "name": "Суші",
+        "image": "/static/images/dishes_2.jpg",
+        "description": "Рис з морепродуктами, загорнутий у норі.",
         "price": 520,
-        "ingredients": ["Рис", "Рыба", "Нори", "Соевый соус", "Имбирь"]
+        "ingredients": ["Рис", "Риба", "Норі", "Соєвий соус", "Імбир"]
     },
     {
         "id": 3,
         "name": "Фо бо",
-        "image": "https://dishmagazine.com/wp-content/uploads/2024/11/pho-bo-soup-1300x1234.jpg",
-        "description": "Вьетнамский суп с рисовой лапшой и говядиной.",
+        "image": "/static/images/dishes_3.jpg",
+        "description": "В'єтнамський суп з рисовою локшиною та яловичиною.",
         "price": 340,
-        "ingredients": ["Бульон", "Рисовая лапша", "Говядина", "Лук", "Кинза"]
+        "ingredients": ["Бульйон", "Рисова локшина", "Яловичина", "Цибуля", "Кінза"]
     },
     {
         "id": 4,
         "name": "Пад тай",
-        "image": "https://dopuza.ru/wp-content/uploads/2023/08/lapsha-pad-taj-s-kuricej.jpg",
-        "description": "Тайская жареная лапша с креветками и орехами.",
+        "image": "/static/images/dishes_5.jpg",
+        "description": "Тайська смажена локшина з креветками та горіхами.",
         "price": 370,
-        "ingredients": ["Лапша", "Креветки", "Яйцо", "Арахис", "Лайм"]
+        "ingredients": ["Локшина", "Креветки", "Яйце", "Арахіс", "Лайм"]
     },
     {
         "id": 5,
-        "name": "Гёдза",
-        "image": "https://primemeat.ru/upload/webp/iblock/c76/shnuqpdheplq3ouqvjwi3w1u50z0ytse/gyoza.webp",
-        "description": "Японские жареные пельмени с мясом и овощами.",
+        "name": "Ґьодза",
+        "image": "/static/images/dishes_5.jpg",
+        "description": "Японські смажені пельмені з м'ясом та овочами.",
         "price": 300,
-        "ingredients": ["Тесто", "Свинина", "Капуста", "Чеснок", "Имбирь"]
+        "ingredients": ["Тісто", "Свинина", "Капуста", "Часник", "Імбир"]
     },
     {
         "id": 6,
         "name": "Том ям",
-        "image": "https://the-challenger.ru/wp-content/uploads/2021/06/depositphotos_41260071_s-2019-600x600.jpeg",
-        "description": "Острый тайский суп с креветками и кокосовым молоком.",
+        "image": "/static/images/dishes_6.jpg",
+        "description": "Гострий тайський суп з креветками та кокосовим молоком.",
         "price": 400,
-        "ingredients": ["Бульон", "Креветки", "Лемонграсс", "Кокосовое молоко", "Чили"]
+        "ingredients": ["Бульйон", "Креветки", "Лемонграсс", "Кокосове молоко", "Чилі"]
     },
     {
         "id": 7,
-        "name": "Кимчи",
-        "image": "https://static.1000.menu/img/content-v2/93/46/63146/kimchi-zakaz_1646132417_8_max.jpg",
-        "description": "Острая корейская квашеная капуста с имбирем и перцем.",
+        "name": "Кімчі",
+        "image": "/static/images/dishes_7.jpg",
+        "description": "Гостра корейська квашена капуста з імбиром та перцем.",
         "price": 200,
-        "ingredients": ["Капуста", "Чеснок", "Имбирь", "Перец", "Рыбный соус"]
+        "ingredients": ["Капуста", "Часник", "Імбир", "Перець", "Рибний соус"]
     },
     {
         "id": 8,
-        "name": "Бибимбап",
-        "image": "https://socportal.info/site/assets/files/0/05/36/323/bibimbap-92850-1.780x480.jpeg?28xqvv",
-        "description": "Корейское блюдо с рисом, овощами и яйцом.",
+        "name": "Бібімбап",
+        "image": "/static/images/dishes_8.jpg",
+        "description": "Корейська страва з рисом, овочами та яйцем.",
         "price": 340,
-        "ingredients": ["Рис", "Говядина", "Яйцо", "Шпинат", "Гочучжан"]
+        "ingredients": ["Рис", "Яловичина", "Яйце", "Шпинат", "Гочуджанг"]
     },
     {
         "id": 9,
-        "name": "Терияки",
-        "image": "https://www.chefmarket.ru/blog/wp-content/uploads/2020/10/teriyaki-chicken-1-2000x1200.jpg",
-        "description": "Рис с японской курицей под сладко-солёном соусе терияки.",
+        "name": "Теріякі",
+        "image": "/static/images/dishes_9.jpg",
+        "description": "Рис з японською куркою під солодко-солоним соусом теріякі.",
         "price": 320,
-        "ingredients": ["Рис","Курица", "Соус терияки", "Сахар", "Имбирь", "Чеснок"]
+        "ingredients": ["Рис", "Курка", "Соус теріякі", "Цукор", "Імбир", "Часник"]
     },
     {
         "id": 10,
-        "name": "Димсам",
-        "image": "https://assets.resto.ru/data/msk/documents/53664/d059.jpg",
-        "description": "Китайские паровые закуски с различными начинками.",
+        "name": "Дімсам",
+        "image": "/static/images/dishes_10.jpg",
+        "description": "Китайські парові закуски з різними начинками.",
         "price": 320,
-        "ingredients": ["Тесто", "Свинина", "Креветки", "Лук", "Имбирь"]
+        "ingredients": ["Тісто", "Свинина", "Креветки", "Цибуля", "Імбир"]
     },
     {
         "id": 11,
         "name": "Чау мейн",
-        "image": "https://static.insales-cdn.com/r/fKhEAS2j0ZI/rs:fit:1000:1000:1/plain/images/products/1/5849/896308953/1404429319.jpg@jpg",
-        "description": "Жареная китайская лапша с мясом и овощами.",
+        "image": "/static/images/dishes_11.jpg",
+        "description": "Смажена китайська локшина з м'ясом та овочами.",
         "price": 350,
-        "ingredients": ["Лапша", "Курица", "Морковь", "Лук", "Соевый соус"]
+        "ingredients": ["Локшина", "Курка", "Морква", "Цибуля", "Соєвий соус"]
     },
     {
         "id": 12,
         "name": "Тофу ма по",
-        "image": "https://avatars.dzeninfra.ru/get-zen_doc/1590748/pub_64fdf6362d85f43c1e580f15_64fdf6905921b358fd1fdcf9/scale_1200",
-        "description": "Популярное китайское блюдо из тофу с пряным соусом.",
+        "image": "/static/images/dishes_12.jpg",
+        "description": "Популярна китайська страва з тофу з пряним соусом.",
         "price": 300,
-        "ingredients": ["Тофу", "Свинина", "Чили", "Чеснок", "Перец"]
+        "ingredients": ["Тофу", "Свинина", "Чилі", "Часник", "Перець"]
     },
     {
         "id": 13,
-        "name": "Спринг-роллы",
-        "image": "https://topfood.club/uploads/cropped/recipes/2022-05-23-8gtl50-gotovye-spring-rolly_1702286867.jpg",
-        "description": "Рисовые рулетики с креветками и овощами.",
+        "name": "Спрінг-роли",
+        "image": "/static/images/dishes_13.jpg",
+        "description": "Рисові рулетики з креветками та овочами.",
         "price": 290,
-        "ingredients": ["Рисовая бумага", "Креветки", "Огурец", "Листья салата", "Мята"]
+        "ingredients": ["Рисовий папір", "Креветки", "Огірок", "Листя салату", "М'ята"]
     },
     {
         "id": 14,
-        "name": "Суп мисо",
-        "image": "https://img.povar.ru/mobile/24/fc/dd/a4/yaponskii_sup_miso-651768.JPG",
-        "description": "Вкуснейший японский суп с тофу на основе пасты мисо.",
+        "name": "Суп місо",
+        "image": "/static/images/dishes_14.jpg",
+        "description": "Найсмачніший японський суп з тофу на основі пасти місо.",
         "price": 260,
-        "ingredients": ["Бульон", "Мисо", "Тофу", "Вакаме", "Зелёный лук"]
+        "ingredients": ["Бульйон", "Місо", "Тофу", "Вакаме", "Зелена цибуля"]
     },
     {
         "id": 15,
-        "name": "Бан ми",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU8ImrQ6nAEa2jdJ2ybLswGxUDhajHdYNnzA&s",
-        "description": "Вьетнамский сэндвич с мясом и овощами.",
+        "name": "Бан мі",
+        "image": "/static/images/dishes_15.jpg",
+        "description": "В'єтнамський сендвіч з м'ясом та овочами.",
         "price": 320,
-        "ingredients": ["Багет", "Свинина", "Морковь", "Кинза", "Соус"]
+        "ingredients": ["Багет", "Свинина", "Морква", "Кінза", "Соус"]
     },
     {
         "id": 16,
         "name": "Удон",
-        "image": "https://topfood.club/uploads/cropped/2023-11-01-6lpqjn-delicious-asian-udon-dish-with-vegetables-mushroo-2023-06-29-18-34-41-utc_1698834156.jpg",
-        "description": "Японская толстая лапша с бульоном и начинками.",
+        "image": "/static/images/dishes_16.jpg",
+        "description": "Японська товста локшина з бульйоном та начинками.",
         "price": 340,
-        "ingredients": ["Лапша удон", "Бульон", "Темпура", "Зелёный лук", "Водоросли"]
+        "ingredients": ["Локшина удон", "Бульйон", "Темпура", "Зелена цибуля", "Водорості"]
     },
     {
         "id": 17,
         "name": "Тяхан",
-        "image": "https://the-challenger.ru/wp-content/uploads/2020/08/tahan_3-800x545.jpg",
-        "description": "Жареный рис с овощами и традиционным японским мясом.",
+        "image": "/static/images/dishes_17.jpg",
+        "description": "Смажений рис з овочами та традиційним японським м'ясом.",
         "price": 240,
-        "ingredients": ["Рис", "Яйцо", "Лук", "Соевый соус", "Свинина"]
+        "ingredients": ["Рис", "Яйце", "Цибуля", "Соєвий соус", "Свинина"]
     },
     {
         "id": 18,
         "name": "Кунг пао",
-        "image": "https://cdn.lifehacker.ru/wp-content/uploads/2024/07/105_1720014494.jpg",
-        "description": "Китайская курица с арахисом и острым соусом.",
+        "image": "/static/images/dishes_18.jpg",
+        "description": "Китайська курка з арахісом та гострим соусом.",
         "price": 320,
-        "ingredients": ["Курица", "Арахис", "Чили", "Чеснок", "Соевый соус"]
+        "ingredients": ["Курка", "Арахіс", "Чилі", "Часник", "Соєвий соус"]
     },
     {
         "id": 19,
         "name": "Чапче",
-        "image": "https://kimchicafe.ru/wp-content/uploads/2020/01/chapche-1024x797.jpg",
-        "description": "Корейская лапша из крахмала с овощами и мясом.",
+        "image": "/static/images/dishes_19.jpg",
+        "description": "Корейська локшина з крохмалю з овочами та м'ясом.",
         "price": 330,
-        "ingredients": ["Лапша", "Говядина", "Шпинат", "Перец", "Соевый соус"]
+        "ingredients": ["Локшина", "Яловичина", "Шпинат", "Перець", "Соєвий соус"]
     },
     {
         "id": 20,
-        "name": "Наси горенг",
-        "image": "https://avatars.dzeninfra.ru/get-zen_doc/10148438/pub_64b29a060adc8743db4964bc_64b29ba6cd6be910996447be/scale_1200",
-        "description": "Вкуснейший индонезийский жареный рис с яйцом и специями.",
+        "name": "Насі горенг",
+        "image": "/static/images/dishes_20.jpg",
+        "description": "Найсмачніший індонезійський смажений рис з яйцем та спеціями.",
         "price": 320,
-        "ingredients": ["Рис", "Яйцо", "Лук", "Чили", "Креветки"]
+        "ingredients": ["Рис", "Яйце", "Цибуля", "Чилі", "Креветки"]
     },
     {
         "id": 21,
-        "name": "Карри кацу",
-        "image": "https://avatars.dzeninfra.ru/get-zen_doc/5289592/pub_6442a1b94f7f264a5a1d9a74_6442a242c7a9750d22860bf4/scale_1200",
-        "description": "Японская котлета с рисом и густым карри соусом.",
+        "name": "Карі кацу",
+        "image": "/static/images/dishes_20.jpg",
+        "description": "Японська котлета з рисом та густим карі соусом.",
         "price": 370,
-        "ingredients": ["Свинина", "Карри", "Рис", "Панировка", "Лук"]
+        "ingredients": ["Свинина", "Карі", "Рис", "Панірування", "Цибуля"]
     },
     {
         "id": 22,
-        "name": "Якитори",
-        "image": "https://brandfood.net/wp-content/uploads/2021/08/govyadina-yakitori-1.jpeg",
-        "description": "Японские куриные шашлычки на гриле с овощами.",
+        "name": "Якіторі",
+        "image": "/static/images/dishes_22.jpg",
+        "description": "Японські курячі шашлички на грилі з овочами.",
         "price": 320,
-        "ingredients": ["Курица", "Соевый соус", "Мирин", "Чеснок", "Лук"]
+        "ingredients": ["Курка", "Соєвий соус", "Мірін", "Часник", "Цибуля"]
     },
     {
         "id": 23,
         "name": "Гунбао тофу",
-        "image": "https://scontent.fiev24-1.fna.fbcdn.net/v/t1.6435-9/86671076_497434767622485_696872453959319552_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=103&ccb=1-7&_nc_sid=0b6b33&_nc_ohc=3i06wNVA6wYQ7kNvgH1IOI_&_nc_oc=Adi46yIIWUvg9XRDJl9pPeFVwrluayrgBI_IVf257yeSvv_lpV7T5dCN7d0H2RDK-Vk&_nc_zt=23&_nc_ht=scontent.fiev24-1.fna&_nc_gid=AgH7xTu6jF9QnZqZUoBqPUJ&oh=00_AYC2582YmFdi2uRRXJfL2BA4EpFLY9DRHLrQR1RF4QYpqA&oe=67EBB008",
-        "description": "Китайское пряное блюдо с тофу и арахисом в соевом соусе.",
+        "image": "/static/images/dishes_23.jpg",
+        "description": "Китайська пряна страва з тофу та арахісом у соєвому соусі.",
         "price": 300,
-        "ingredients": ["Тофу", "Чили", "Арахис", "Чеснок", "Соевый соус"]
+        "ingredients": ["Тофу", "Чилі", "Арахіс", "Часник", "Соєвий соус"]
     },
     {
         "id": 24,
         "name": "Сяо лун бао",
-        "image": "https://img.freepik.com/premium-photo/steamed-pork-soup-dumplings-named-xiao-long-bao-taiwan_315337-7282.jpg",
-        "description": "Китайские суповые пельмени с луком на пару.",
+        "image": "/static/images/dishes_24.jpg",
+        "description": "Китайські супові пельмені з цибулею на пару.",
         "price": 320,
-        "ingredients": ["Тесто", "Свинина", "Бульон", "Имбирь", "Зелёный лук"]
+        "ingredients": ["Тісто", "Свинина", "Бульйон", "Імбир", "Зелена цибуля"]
     },
     {
         "id": 25,
         "name": "Тонкацу",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tonkatsu_of_Kimukatsu.jpg/1200px-Tonkatsu_of_Kimukatsu.jpg",
-        "description": "Японская жареная свиная котлета в панировке.",
+        "image": "/static/images/dishes_25.jpg",
+        "description": "Японська смажена свиняча котлета в паніруванні.",
         "price": 320,
-        "ingredients": ["Свинина", "Панировочные сухари", "Яйцо", "Мука", "Соевый соус"]
+        "ingredients": ["Свинина", "Панірувальні сухарі", "Яйце", "Борошно", "Соєвий соус"]
     },
     {
         "id": 26,
-        "name": "Чонгкингская курица",
-        "image": "https://www.vsegdavkusno.ru/assets/images/recipes/1753/image_1130/1.jpg",
-        "description": "Острая китайская курица с перцем и специями.",
+        "name": "Чонгкінгська курка",
+        "image": "/static/images/dishes_26.jpg",
+        "description": "Гостра китайська курка з перцем та спеціями.",
         "price": 340,
-        "ingredients": ["Курица", "Чеснок", "Перец чили", "Соевый соус", "Имбирь"]
+        "ingredients": ["Курка", "Часник", "Перець чилі", "Соєвий соус", "Імбир"]
     },
     {
         "id": 27,
         "name": "Харусаме",
-        "image": "https://attuale.ru/wp-content/uploads/2018/09/569cbaf09992f-1024x682.png",
-        "description": "Японский салат с стеклянной лапшой и овощами.",
+        "image": "/static/images/dishes_27.jpg",
+        "description": "Японський салат зі скляною локшиною та овочами.",
         "price": 250,
-        "ingredients": ["Стеклянная лапша", "Морковь", "Огурец", "Соевый соус", "Кунжут", "Мясо"]
+        "ingredients": ["Скляна локшина", "Морква", "Огірок", "Соєвий соус", "Кунжут", "М'ясо"]
     },
     {
         "id": 28,
-        "name": "Соба с говядиной",
-        "image": "https://media.ovkuse.ru/images/recipes/31e7ebf2-c07f-447c-ae53-6b4c83b0a5fa/31e7ebf2-c07f-447c-ae53-6b4c83b0a5fa_420_420.webp",
-        "description": "Гречневая лапша соба с говядиной в соусе.",
+        "name": "Соба з яловичиною",
+        "image": "/static/images/dishes_28.jpg",
+        "description": "Гречана локшина соба з яловичиною в соусі.",
         "price": 370,
-        "ingredients": ["Лапша соба", "Говядина", "Соевый соус", "Лук", "Кунжутное масло"]
+        "ingredients": ["Локшина соба", "Яловичина", "Соєвий соус", "Цибуля", "Кунжутна олія"]
     },
     {
         "id": 29,
-        "name": "Кантонистский рис",
-        "image": "https://www.kuhnyadoma.com.ua/wp-content/uploads/2023/02/riso_alla_cantonese-960x698.jpg",
-        "description": "Китайский жареный рис с креветками и ананасами.",
+        "name": "Кантоністський рис",
+        "image": "/static/images/dishes_29.jpg",
+        "description": "Найсмачніший китайський смажений рис з креветками та ананасами.",
         "price": 360,
-        "ingredients": ["Рис", "Креветки", "Ананасы", "Яйцо", "Соевый соус"]
+        "ingredients": ["Рис", "Креветки", "Ананаси", "Яйце", "Соєвий соус"]
     },
     {
         "id": 30,
-        "name": "Якиудон",
-        "image": "https://bachans.com/cdn/shop/articles/YakiUdon-Hero_1024x1024.png?v=1706046592",
-        "description": "Жареная японская лапша удон с овощами и мясом.",
+        "name": "Якіудон",
+        "image": "/static/images/dishes_30.jpg",
+        "description": "Смажена японська локшина удон з овочами та м'ясом.",
         "price": 350,
-        "ingredients": ["Лапша удон", "Свинина", "Капуста", "Морковь", "Соус терияки", "Грибы"]
+        "ingredients": ["Локшина удон", "Свинина", "Капуста", "Морква", "Соус теріякі", "Гриби"]
     },
     {
         "id": 31,
         "name": "Данданьмянь",
-        "image": "https://images.gastronom.ru/vs5RBnufrGydrHj0oJfPZm2Zs7rTU4Z8Vq6OB-LDuhI/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzL2NiNzE3ZWMwLTM1NzYtNGUwYi1hNWI4LWM4OTZjMjliN2MyYy5qcGc.webp",
-        "description": "Китайская лапша с острой кунжутной пастой и мясом.",
+        "image": "/static/images/dishes_31.jpg",
+        "description": "Китайська локшина з гострою кунжутною пастою та м'ясом.",
         "price": 330,
-        "ingredients": ["Лапша", "Свинина", "Кунжутная паста", "Чеснок", "Перец чили"]
+        "ingredients": ["Локшина", "Свинина", "Кунжутна паста", "Часник", "Перець чилі"]
     },
     {
         "id": 32,
         "name": "Хого",
-        "image": "https://ogohogo.ru/wp-content/uploads/1280-52.jpg",
-        "description": "Блюдо, приготовленное в кипящем бульоне прямо на столе.",
+        "image": "/static/images/dishes_32.jpg",
+        "description": "Страва, приготована в киплячому бульйоні прямо на столі.",
         "price": 550,
-        "ingredients": ["Говядина", "Курица", "Морепродукты", "Грибы", "Овощи", "Бульон"]
+        "ingredients": ["Яловичина", "Курка", "Морепродукти", "Гриби", "Овочі", "Бульйон"]
     }
 ]
 
 drinks = [
     {
         "id": 1,
-        "name": "Зелёный чай",
-        "image": "https://chaynyy-list.ru/upload/medialibrary/9e6/dfswparq22pf68zfp2fn5w8pz52jd9df.jpg",
-        "description": "Традиционный, всем знакомый, китайский зелёный чай.",
+        "name": "Зелений чай",
+        "image": "/static/images/drinks_1.jpg",
+        "description": "Традиційний, всім знайомий, китайський зелений чай.",
         "price": 120,
-        "ingredients": ["Чайные листья"]
+        "ingredients": ["Чайне листя"]
     },
     {
         "id": 2,
         "name": "Чай матча",
-        "image": "https://101tea.ru/upload/ammina.optimizer/jpg-webp/q70/upload/iblock/593/5939e1b5b44e66d6c1a90d5e325a46fb.webp",
-        "description": "Японский порошковый зелёный чай с горьковатым вкусом.",
+        "image": "/static/images/drinks_2.jpg",
+        "description": "Японський порошковий зелений чай з гіркуватим смаком.",
         "price": 140,
         "ingredients": ["Порошок матча", "Вода"]
     },
     {
         "id": 3,
         "name": "Таро латте",
-        "image": "https://www.eatclub.de/wp-content/uploads/2022/01/taro-latte.jpg",
-        "description": "Напиток на основе картофеля таро с молоком и сахаром.",
+        "image": "/static/images/drinks_3.jpg",
+        "description": "Напій на основі картоплі таро з молоком та цукром.",
         "price": 180,
-        "ingredients": ["Таро", "Молоко", "Сахар"]
+        "ingredients": ["Таро", "Молоко", "Цукор"]
     },
     {
         "id": 4,
         "name": "Кола",
-        "image": "https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_65faef7bd0149557dde0c63f_65fd5d31d967c33f449b12d2/scale_1200",
-        "description": "Популярный газированный напиток с характерным вкусом.",
+        "image": "/static/images/drinks_4.jpg",
+        "description": "Популярний газований напій з характерним смаком.",
         "price": 80,
-        "ingredients": ["Вода", "Сахар", "Газ", "Карамель"]
+        "ingredients": ["Вода", "Цукор", "Газ", "Карамель"]
     },
     {
         "id": 5,
-        "name": "Махито",
-        "image": "https://recipes.av.ru//media/recipes/102158_picture.jpg",
-        "description": "Холодный напиток с добавлением лайма и мяты.",
+        "name": "Мохіто",
+        "image": "/static/images/drinks_5.jpg",
+        "description": "Холодний напій з додаванням лайма та м'яти.",
         "price": 150,
-        "ingredients": ["Вода", "Лимон", "Мята", "Сахар"]
+        "ingredients": ["Вода", "Лимон", "М'ята", "Цукор"]
     },
     {
         "id": 6,
         "name": "Лимонад",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP1SRz0Xbva5OS2jTJRnROsGuyW2rKXrcWyQ&s",
-        "description": "Освежающий напиток из лимона с сахаром и водой.",
+        "image": "/static/images/drinks_6.jpg",
+        "description": "Освіжаючий напій з лимона з цукром та водою.",
         "price": 120,
-        "ingredients": ["Лимон", "Сахар", "Вода"]
+        "ingredients": ["Лимон", "Цукор", "Вода"]
     },
     {
         "id": 7,
-        "name": "Милкшейк с клубникой",
-        "image": "https://img.tsn.ua/cached/560/tsn-ef193642135c1378f91261f26d18fb96/thumbs/1116x628/6f/16/170d8abd62cae7012e53073f3af3166f.jpeg",
-        "description": "Молочный коктейль с клубникой и ванильным вкусом.",
+        "name": "Мілкшейк з полуницею",
+        "image": "/static/images/drinks_7.jpg",
+        "description": "Молочний коктейль з полуницею та ванільним смаком.",
         "price": 180,
-        "ingredients": ["Молоко", "Клубника", "Ваниль"]
+        "ingredients": ["Молоко", "Полуниця", "Ваніль"]
     },
     {
         "id": 8,
-        "name": "Кокосовая вода",
-        "image": "https://ecosoft.ua/upload/resize_cache/iblock/821/405_270_140cd750bba9870f18aada2478b24840a/coconut_water.webp",
-        "description": "Освежающий напиток из натуральной кокосовой воды.",
+        "name": "Кокосова вода",
+        "image": "/static/images/drinks_8.jpg",
+        "description": "Освіжаючий напій з натуральної кокосової води.",
         "price": 150,
-        "ingredients": ["Кокосовая вода"]
+        "ingredients": ["Кокосова вода"]
     },
     {
         "id": 9,
-        "name": "Имбирный чай",
-        "image": "https://www.chefmarket.ru/blog/wp-content/uploads/2018/09/shutterstock_242793037-e1536059519801.jpg",
-        "description": "Имбирный чай с добавлением мёда.",
+        "name": "Імбирний чай",
+        "image": "/static/images/drinks_9.jpg",
+        "description": "Імбирний чай з додаванням меду.",
         "price": 130,
-        "ingredients": ["Имбирь", "Мёд", "Чай"]
+        "ingredients": ["Імбир", "Мед", "Чай"]
     },
     {
         "id": 10,
         "name": "Юдзу лимонад",
-        "image": "https://image.spletnik.ru/resize/fit=cover,gravity=0.5x0.5,format=auto,width=369,height=558,trim=0;0;0;0/https://images.spletnik.ru/i/A/A344DNCf2b/original.jpg",
-        "description": "Освежающий напиток из японского цитруса.",
+        "image": "/static/images/drinks_10.jpg",
+        "description": "Освіжаючий напій з японського цитруса.",
         "price": 160,
-        "ingredients": ["Юдзу", "Вода", "Сахар"]
+        "ingredients": ["Юдзу", "Вода", "Цукор"]
     },
     {
         "id": 11,
-        "name": "Чёрный чай с молоком",
-        "image": "https://www.rusteaco.ru/upload/medialibrary/5b5/5b56b4ec2b1fd30065bfb21f3167580e.jpg",
-        "description": "Классический чай с молоком в азиатском стиле.",
+        "name": "Чорний чай з молоком",
+        "image": "/static/images/drinks_11.jpg",
+        "description": "Класичний чай з молоком в азіатському стилі.",
         "price": 140,
-        "ingredients": ["Чай", "Молоко", "Сахар"]
+        "ingredients": ["Чай", "Молоко", "Цукор"]
     },
     {
         "id": 12,
-        "name": "Холодный жасминовый чай",
-        "image": "https://images.gastronom.ru/6xer9xiTmwHwzVd83x-S7eP9cXqZ22UfCy9WZPEkFrg/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzdjMmQwZDczLTk4MmYtNDJkYS04N2M0LTg1NzdmMzAyNjFjNS5qcGc.webp",
-        "description": "Холодный ароматный чай с жасмином.",
+        "name": "Холодний жасминовий чай",
+        "image": "/static/images/drinks_12.jpg",
+        "description": "Холодний ароматний чай з жасмином.",
         "price": 120,
-        "ingredients": ["Чай жасминовый", "Вода"]
+        "ingredients": ["Чай жасминовий", "Вода"]
     },
     {
         "id": 13,
-        "name": "Рисовое молоко",
-        "image": "https://cdn.informator.ua/@prod/media/ua/2021/06/02/60b7975eeabca5.79277799.jpg",
-        "description": "Лёгкий сладковатый напиток на основе риса.",
+        "name": "Рисове молоко",
+        "image": "/static/images/drinks_13.jpg",
+        "description": "Легкий солодкуватий напій на основі рису.",
         "price": 150,
-        "ingredients": ["Рис", "Вода", "Сахар"]
+        "ingredients": ["Рис", "Вода", "Цукор"]
     },
     {
         "id": 14,
-        "name": "Тыквенный латте",
-        "image": "https://blog.coffeeok.com.ua/wp-content/uploads/2023/10/tikvennii-latte-1-scaled.jpg",
-        "description": "Пряный осенний напиток с тыквой и кофе.",
+        "name": "Гарбузовий латте",
+        "image": "/static/images/drinks_14.jpg",
+        "description": "Пряний осінній напій з гарбузом та кавою.",
         "price": 180,
-        "ingredients": ["Тыква", "Молоко", "Корица", "Кофе"]
+        "ingredients": ["Гарбуз", "Молоко", "Кориця", "Кава"]
     },
     {
         "id": 15,
         "name": "Кумис",
-        "image": "https://food.pibig.info/uploads/posts/2023-03/1678806728_food-pibig-info-p-blyuda-iz-kumisa-pinterest-6.jpg",
-        "description": "Ферментированный молочный напиток.",
+        "image": "/static/images/drinks_15.jpg",
+        "description": "Ферментований молочний напій.",
         "price": 170,
-        "ingredients": ["Кобылье молоко", "Дрожжи"]
+        "ingredients": ["Кобиляче молоко", "Дріжджі"]
     },
     {
         "id": 16,
-        "name": "Сакэ",
-        "image": "https://shuba.life/static/content/thumbs/1344x672/8/41/iy6x6m---c2x1x50px50p-up--268179d0e90352f727edac5e743ea418.jpg",
-        "description": "Традиционное японское рисовое вино",
+        "name": "Саке",
+        "image": "/static/images/drinks_16.jpg",
+        "description": "Традиційне японське рисове вино",
         "price": 140,
-        "ingredients": ["Рис", "Вода", "Сахар", "Винные Дрожжи или Кодзи"]
+        "ingredients": ["Рис", "Вода", "Цукор", "Винні дріжджі або Коджі"]
     }
 ]
 
 desserts = [
     {
         "id": 1,
-        "name": "Моти классические",
-        "image": "https://static.nv.ua/shared/system/MediaPhoto/images/000/488/475/original/9af94ffe6dcea45369a8ff50d0ffa1da.png?q=85&stamp=20240517140603&f=jpg",
-        "description": "Японский десерт из клейкого риса с различными начинками.",
+        "name": "Мотті классичні",
+        "image": "/static/images/desserts_1.jpg",
+        "description": "Японський десерт з клейкого рису з різними начинками.",
         "price": 180,
-        "ingredients": ["Клейкий рис", "Фрукты", "Фасоль"]
+        "ingredients": ["Клейкий рис", "Фрукти", "Квасоля"]
     },
     {
         "id": 2,
-        "name": "Димсам",
-        "image": "https://st.depositphotos.com/3162779/54178/i/450/depositphotos_541783334-stock-photo-tangyuan-chinese-dessert-made-ball.jpg",
-        "description": "Шарики из клейкого риса с начинкой из кунжута с сиропом.",
+        "name": "Танъюань",
+        "image": "/static/images/desserts_2.jpg",
+        "description": "Кульки з клейкого рису з начинкою з кунжуту з сиропом.",
         "price": 250,
-        "ingredients": ["Клейкий рис", "Черный кунжут", "Сахар", "Имбирь"]
+        "ingredients": ["Клейкий рис", "Чорний кунжут", "Цукор", "Імбир"]
     },
     {
         "id": 3,
-        "name": "Лунный торт",
-        "image": "https://s3.outsource.store/severmetropol/pictures/683.jpg?refresh=637938487326730000",
-        "description": "Китайский торт с плотной начинкой, часто подаётся на праздник Лунного Нового года.",
+        "name": "Місячний торт",
+        "image": "/static/images/desserts_3.jpg",
+        "description": "Китайський торт з щільною начинкою, часто подається на свято Місячного Нового року.",
         "price": 250,
-        "ingredients": ["Мука", "Джем", "Паста из бобов"]
+        "ingredients": ["Борошно", "Джем", "Паста з бобів"]
     },
     {
         "id": 4,
         "name": "Манго-пудинг",
-        "image": "https://assets.livinn.lt/fit-in/465x465/12/5f/44/chia-pudingas-min.jpeg",
-        "description": "Популярный десерт из чиа, кокосового молока и свежего манго.",
+        "image": "/static/images/desserts_4.jpg",
+        "description": "Популярний десерт з чіа, кокосового молока та свіжого манго.",
         "price": 320,
-        "ingredients": ["Чиа", "Кокосовое молоко", "Манго", "Мед"]
+        "ingredients": ["Чіа", "Кокосове молоко", "Манго", "Мед"]
     },
     {
         "id": 5,
-        "name": "Кокосовый пудинг",
-        "image": "https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_67c245a7b8d8360f23e82123_67c247dd4419276b4f918043/scale_1200",
-        "description": "Десерт с кокосовым пудингом и сиропом из сахара пальмы.",
+        "name": "Кокосовий пудинг",
+        "image": "/static/images/desserts_5.jpg",
+        "description": "Десерт з кокосовим пудингом і сиропом з цукру пальми.",
         "price": 280,
-        "ingredients": ["Кокосовое молоко", "Тапиока", "Сахар пальмы", "Лед"]
+        "ingredients": ["Кокосове молоко", "Тапіока", "Цукор пальми", "Лід"]
     },
     {
         "id": 6,
-        "name": "Тарт с манго",
-        "image": "https://w4s8p5t8.delivery.rocketcdn.me/wp-content/uploads/2022/06/mango-passion-fruit-tart.jpg",
-        "description": "Десерт с манго и сладким кремом в хрустящей корочке из песочного теста.",
+        "name": "Тарт з манго",
+        "image": "/static/images/desserts_6.jpg",
+        "description": "Десерт з манго та солодким кремом у хрусткій скоринці з пісочного тіста.",
         "price": 280,
-        "ingredients": ["Манго", "Крем", "Тесто"]
+        "ingredients": ["Манго", "Крем", "Тісто"]
     },
     {
         "id": 7,
-        "name": "Сезамовые печенья",
-        "image": "https://s1.eda.ru/StaticContent/Photos/120131082509/160406210314/p_O.jpg",
-        "description": "Китайские традиционные печенья с сезамом.",
+        "name": "Кунжутне печиво",
+        "image": "/static/images/desserts_7.jpg",
+        "description": "Китайське традиційне печиво з кунжутом.",
         "price": 150,
-        "ingredients": ["Сезам", "Мука", "Масло", "Сахар"]
+        "ingredients": ["Кунжут", "Борошно", "Масло", "Цукор"]
     },
     {
         "id": 8,
-        "name": "Пудинг с чаем матча",
-        "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi-Ep3UQ6jiPo-xslhgbcReqVMNWazTlGvBppbT0CCnikDznI6DiBurfWUHmTDBgQrOLt0gnFryfdhNTlb-0RVVkTrySXuVC8uP2G0D_aActZ4afdLaNHnhXfooMnEVRwIaleoJf-krzG0-/s1600/%25D0%259F%25D1%2583%25D0%25B4%25D0%25B8%25D0%25BD%25D0%25B3+%25D1%2581+%25D1%2587%25D0%25B8%25D0%25B0+%25D0%25B8+%25D1%2587%25D0%25B0%25D0%25B5%25D0%25BC+%25D0%259C%25D0%25B0%25D1%2582%25D1%2587%25D0%25B0+iuliia_ned.jpg",
-        "description": "Нежный пудинг с порошком матча.",
+        "name": "Пудинг з чаєм матча",
+        "image": "/static/images/desserts_8.jpg",
+        "description": "Ніжний пудинг з порошком матча.",
         "price": 250,
-        "ingredients": ["Порошок матча", "Молоко", "Сахар"]
+        "ingredients": ["Порошок матча", "Молоко", "Цукор"]
     },
     {
         "id": 9,
-        "name": "Тайяки",
-        "image": "https://s1.eda.ru/StaticContent/Photos/130813174717/190807133231/p_O.jpg",
-        "description": "Японский десерт в форме рыбки с начинкой.",
+        "name": "Тайякі",
+        "image": "/static/images/desserts_9.jpg",
+        "description": "Японський десерт у формі рибки з начинкою.",
         "price": 180,
-        "ingredients": ["Мука", "Сахар", "Красная фасоль анко", "Яйцо"]
+        "ingredients": ["Борошно", "Цукор", "Червона квасоля анко", "Яйце"]
     },
     {
         "id": 10,
-        "name": "Дангo",
-        "image": "https://cdn.lifehacker.ru/wp-content/uploads/2023/11/Dango_1699528111-e1699528145978.jpg",
-        "description": "Вкуснейшие шарики из рисовой муки с соусом митараши.",
+        "name": "Данґо",
+        "image": "/static/images/desserts_10.jpg",
+        "description": "Найсмачніші кульки з рисового борошна з соусом мітараші.",
         "price": 160,
-        "ingredients": ["Рисовая мука", "Соевый соус", "Сахар", "Крахмал"]
+        "ingredients": ["Рисове борошно", "Соєвий соус", "Цукор", "Крохмаль"]
     },
     {
         "id": 11,
         "name": "Кастелла",
-        "image": "https://s1.eda.ru/StaticContent/Photos/Upscaled/110816122025/140504174320/p_O.jpg",
-        "description": "Японский бисквитный пирог португальского происхождения.",
+        "image": "/static/images/desserts_11.jpg",
+        "description": "Японський бісквітний пиріг португальського походження.",
         "price": 220,
-        "ingredients": ["Яйца", "Мука", "Сахар", "Мёд"]
+        "ingredients": ["Яйця", "Борошно", "Цукор", "Мед"]
     },
     {
         "id": 12,
-        "name": "Анмитсу",
-        "image": "https://sun9-14.userapi.com/s/v1/ig2/Wr9a0v3XQFCLTxHrpiJddjf_nRbIiLvrE21zxCwZVUM8VvcEvfg2sUHNRfcm6LxGOQo7mDE7PylmWIdycdSCpwmk.jpg?quality=95&as=32x37,48x56,72x84,108x126,160x187,240x280,360x420,480x560,540x630,640x747,720x840,1080x1260,1199x1399&from=bu&u=cLkitoWA-7cT2_qM5eM0yaYFYfcAOMq0JWij3gQ7xEs&cs=518x604",
-        "description": "Японский десерт с фруктами, анко и агар-агаром.",
+        "name": "Анміцу",
+        "image": "/static/images/desserts_12.jpg",
+        "description": "Японський десерт з фруктами, анко та агар-агаром.",
         "price": 250,
-        "ingredients": ["Агар-агар", "Красная фасоль анко", "Фрукты", "Сироп"]
+        "ingredients": ["Агар-агар", "Червона квасоля анко", "Фрукти", "Сироп"]
     },
     {
         "id": 13,
-        "name": "Вафли с мороженым",
-        "image": "https://bit.ua/wp-content/uploads/2016/05/Screenshot_1.jpg",
-        "description": "Десерт из вафель и мороженого с сладкими топпингами.",
+        "name": "Вафлі з морозивом",
+        "image": "/static/images/desserts_13.jpg",
+        "description": "Десерт з вафель та морозива з солодкими топінгами.",
         "price": 270,
-        "ingredients": ["Чай ходзитя", "Мороженое", "Взбитые сливки", "Красная фасоль анко"]
+        "ingredients": ["Чай ходзітя", "Морозиво", "Збиті вершки", "Червона квасоля анко"]
     },
     {
         "id": 14,
-        "name": "Чизкейк нью-йорк",
-        "image": "https://yasensvit.ua/uploads/recipes/prev/639ca77703b3a.jpg",
-        "description": "Классический воздушный чизкейк знакомый каждому.",
+        "name": "Чізкейк нью-йорк",
+        "image": "/static/images/desserts_14.jpg",
+        "description": "Класичний повітряний чізкейк знайомий кожному.",
         "price": 290,
-        "ingredients": ["Сливочный сыр", "Яйца", "Сахар"]
+        "ingredients": ["Вершковий сир", "Яйця", "Цукор"]
     },
     {
         "id": 15,
-        "name": "Ягодное желе",
-        "image": "https://obitel-minsk.ru/assets/images/read/2022/main/zhele-iz-zamorozhennyh-yagod-big.jpg",
-        "description": "Легкое и освежающее желе с ягодами, идеально для летнего десерта.",
+        "name": "Ягідне желе",
+        "image": "/static/images/desserts_15.jpg",
+        "description": "Легке та освіжаюче желе з ягодами, ідеально для літнього десерту.",
         "price": 220,
-        "ingredients": ["Ягоды", "Желатин", "Сахар", "Вода"]
+        "ingredients": ["Ягоди", "Желатин", "Цукор", "Вода"]
     },
     {
         "id": 16,
-        "name": "Японский пудинг",
-        "image": "https://cdn.lifehacker.ru/wp-content/uploads/2022/09/shutterstock_2139465649_1664468404-scaled.jpg",
-        "description": "Крем-карамель в японском стиле.",
+        "name": "Японський пудинг",
+        "image": "/static/images/desserts_16.jpg",
+        "description": "Крем-карамель в японському стилі.",
         "price": 230,
-        "ingredients": ["Яйца", "Молоко", "Сахар", "Карамель"]
+        "ingredients": ["Яйця", "Молоко", "Цукор", "Карамель"]
     }
 ]

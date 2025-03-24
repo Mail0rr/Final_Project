@@ -13,9 +13,9 @@
         <h1 class="text-4xl font-bold">{{ dessert.name }}</h1>
         <p class="text-gray-400 mt-3 text-xl">{{ dessert.description }}</p>
         <div class="mt-5 inline-block px-4 py-2 bg-gray-800/50 rounded-lg">
-          <p class="text-2xl font-bold text-red-400">Цена: {{ dessert.price }} грн</p>
+          <p class="text-2xl font-bold text-red-400">Ціна: {{ dessert.price }} грн</p>
         </div>
-        <h3 class="text-2xl font-semibold mt-5">Ингредиенты:</h3>
+        <h3 class="text-2xl font-semibold mt-5">Інгредієнти:</h3>
         <ul class="list-disc list-inside text-gray-300 mt-3 text-lg">
             {% for ingredient in dessert.ingredients.split(', ') %}
             <li> {{ ingredient }}</li>
@@ -24,7 +24,7 @@
 
         <div class="mt-8 flex gap-4 w-full">
             <a href="#" class="bg-lime-600 text-white px-6 py-3 rounded-lg transition duration-300 hover:opacity-80 flex-1 text-center border-2 border-lime-500">
-                Добавить в корзину
+                Додати до кошика
             </a>
             <a href="javascript:window.history.back()"
                class="bg-rose-600 text-white px-6 py-3 rounded-lg transition duration-300 hover:opacity-80 flex-1 text-center border-2 border-rose-500">

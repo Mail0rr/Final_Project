@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("searchInput")
   const searchResults = document.getElementById("searchResults")
 
-  // Предотвращаем отправку формы при нажатии Enter
+  // Запобігаємо відправці форми при натисканні Enter
   searchInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       e.preventDefault()
@@ -10,14 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })
 
-  // Автоматически делаем первую букву заглавной
+  // Автоматично робимо першу літеру великою
   searchInput.addEventListener("input", function () {
     const value = this.value
     if (value.length > 0) {
       this.value = value.charAt(0).toUpperCase() + value.slice(1)
     }
 
-    // Продолжаем с поиском
+    // Продовжуємо з пошуком
     const query = this.value.trim()
 
     if (query.length < 1) {
@@ -26,25 +26,25 @@ document.addEventListener("DOMContentLoaded", () => {
       return
     }
 
-    // Запрос к API для получения результатов поиска
+    // Запит до API для отримання результатів пошуку
     fetch(`/api/search?query=${encodeURIComponent(query)}`)
       .then((response) => response.json())
       .then((data) => {
-        // Очищаем предыдущие результаты
+        // Очищаємо попередні результати
         searchResults.innerHTML = ""
 
-        // Если нет результатов
+        // Якщо немає результатів
         if (!data.dishes.length && !data.drinks.length && !data.desserts.length) {
-          searchResults.innerHTML = '<div class="p-4 text-center text-gray-400">Ничего не найдено</div>'
+          searchResults.innerHTML = '<div class="p-4 text-center text-gray-400">Нічого не знайдено</div>'
           searchResults.classList.remove("hidden")
           return
         }
 
-        // Ограничиваем количество результатов до 5
+        // Обмежуємо кількість результатів до 5
         let count = 0
         const maxResults = 5
 
-        // Добавляем блюда
+        // Додаємо страви
         data.dishes.forEach((item) => {
           if (count < maxResults) {
             addSearchResultItem(item, "dish")
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         })
 
-        // Добавляем напитки
+        // Додаємо напої
         data.drinks.forEach((item) => {
           if (count < maxResults) {
             addSearchResultItem(item, "drink")
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         })
 
-        // Добавляем десерты
+        // Додаємо десерти
         data.desserts.forEach((item) => {
           if (count < maxResults) {
             addSearchResultItem(item, "dessert")
@@ -68,15 +68,15 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         })
 
-        // Показываем результаты
+        // Показуємо результати
         searchResults.classList.remove("hidden")
       })
       .catch((error) => {
-        console.error("Ошибка при поиске:", error)
+        console.error("Помилка при пошуку:", error)
       })
   })
 
-  // Функция для добавления элемента результата поиска
+  // Функція для додавання елемента результату пошуку
   function addSearchResultItem(item, type) {
     const itemElement = document.createElement("a")
     let detailUrl = ""
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
             <div class="ml-3 flex-grow">
                 <div class="font-medium">${item.name}</div>
-                <div class="text-sm text-gray-400">${type === "dish" ? "Блюдо" : type === "drink" ? "Напиток" : "Десерт"}</div>
+                <div class="text-sm text-gray-400">${type === "dish" ? "Страва" : type === "drink" ? "Напій" : "Десерт"}</div>
             </div>
             <div class="text-red-400 font-bold">${item.price} грн</div>
         `
@@ -107,18 +107,17 @@ document.addEventListener("DOMContentLoaded", () => {
     searchResults.appendChild(itemElement)
   }
 
-  // Закрываем результаты поиска при клике вне поля
+  // Закриваємо результати пошуку при кліку поза полем
   document.addEventListener("click", (e) => {
     if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
       searchResults.classList.add("hidden")
     }
   })
 
-  // Показываем результаты снова при фокусе на поле, если есть текст
+  // Показуємо результати знову при фокусі на полі, якщо є текст
   searchInput.addEventListener("focus", function () {
     if (this.value.trim().length > 0 && searchResults.children.length > 0) {
       searchResults.classList.remove("hidden")
     }
   })
 })
-

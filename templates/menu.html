@@ -5,7 +5,7 @@
 {% block content %}
 <div class="pb-80">
     <h1 class="text-7xl font-bold text-center mb-12 mt-12">Меню</h1>
-        <h2 id="dish" class="text-6xl font-semibold text-center mb-10 mt-10">Основные блюда</h2>
+        <h2 id="dish" class="text-6xl font-semibold text-center mb-10 mt-10">Основні страви</h2>
             <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
                 {% for dish in dishes %}
                 <div class="bg-gray-900 rounded-lg flex items-start p-8 hover:-translate-y-2 transition transform duration-300 h-[420px]">
@@ -21,14 +21,14 @@
                         <div class="mt-auto w-full pt-4">
                             <a href="{{ url_for('dish_detail', dish_id=dish.id) }}"
                                class="block w-full mb-1 bg-violet-500 text-white px-6 py-3 rounded-lg transition duration-300 hover:opacity-80 text-center border-2 border-violet-400">
-                               Подробнее
+                               Детальніше
                             </a>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
             </div>
-        <h2 id="drink" class="text-6xl font-semibold text-center mb-10 mt-10">Напитки</h2>
+        <h2 id="drink" class="text-6xl font-semibold text-center mb-10 mt-10">Напої</h2>
             <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
                 {% for drink in drinks %}
                 <div class="bg-gray-900 rounded-lg flex items-start p-8 hover:-translate-y-2 transition transform duration-300 h-[420px]">
@@ -44,14 +44,14 @@
                         <div class="mt-auto w-full pt-4">
                             <a href="{{ url_for('drink_detail', drink_id=drink.id) }}"
                                class="block w-full mb-1 bg-violet-500 text-white px-6 py-3 rounded-lg transition duration-300 hover:opacity-80 text-center border-2 border-violet-400">
-                               Подробнее
+                               Детальніше
                             </a>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
             </div>
-        <h2 id="dessert" class="text-6xl font-semibold text-center mb-10 mt-10">Десерты</h2>
+        <h2 id="dessert" class="text-6xl font-semibold text-center mb-10 mt-10">Десерти</h2>
             <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
                 {% for dessert in desserts %}
                 <div class="bg-gray-900 rounded-lg flex items-start p-8 hover:-translate-y-2 transition transform duration-300 h-[420px]">
@@ -67,7 +67,7 @@
                         <div class="mt-auto w-full pt-4">
                             <a href="{{ url_for('dessert_detail', dessert_id=dessert.id) }}"
                                class="block w-full mb-1 bg-violet-500 text-white px-6 py-3 rounded-lg transition duration-300 hover:opacity-80 text-center border-2 border-violet-400">
-                               Подробнее
+                               Детальніше
                             </a>
                         </div>
                     </div>

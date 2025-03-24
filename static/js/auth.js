@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Обработчики для модальных окон
+  // Обробники для модальних вікон
   const registerButton = document.getElementById("registerButton")
   const closeRegister = document.getElementById("closeRegister")
   const closeLogin = document.getElementById("closeLogin")
@@ -8,28 +8,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const registerModal = document.getElementById("registerModal")
   const loginModal = document.getElementById("loginModal")
 
-  // Открытие модального окна регистрации
+  // Відкриття модального вікна реєстрації
   if (registerButton) {
     registerButton.addEventListener("click", () => {
       registerModal.classList.remove("hidden", "scale-0")
     })
   }
 
-  // Закрытие модального окна регистрации
+  // Закриття модального вікна реєстрації
   if (closeRegister) {
     closeRegister.addEventListener("click", () => {
       registerModal.classList.add("hidden", "scale-0")
     })
   }
 
-  // Закрытие модального окна входа
+  // Закриття модального вікна входу
   if (closeLogin) {
     closeLogin.addEventListener("click", () => {
       loginModal.classList.add("hidden", "scale-0")
     })
   }
 
-  // Переход от регистрации к входу
+  // Перехід від реєстрації до входу
   if (openLogin) {
     openLogin.addEventListener("click", () => {
       registerModal.classList.add("hidden", "scale-0")
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  // Переход от входа к регистрации
+  // Перехід від входу до реєстрації
   if (openRegister) {
     openRegister.addEventListener("click", () => {
       loginModal.classList.add("hidden", "scale-0")
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  // Обработка телефонного номера
+  // Обробка телефонного номера
   const phoneContainer = document.getElementById("phoneContainer")
   const phonePlaceholder = document.getElementById("phonePlaceholder")
   const phoneInput = document.getElementById("phoneInput")
@@ -88,13 +88,13 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  // Обработка отправки формы регистрации через AJAX
+  // Обробка відправки форми реєстрації через AJAX
   const registerForm = document.getElementById("registerForm")
   if (registerForm) {
     registerForm.addEventListener("submit", function (e) {
-      e.preventDefault() // Предотвращаем стандартную отправку формы
+      e.preventDefault() // Запобігаємо стандартній відправці форми
 
-      // Собираем данные формы
+      // Збираємо дані форми
       const formData = new FormData(this)
       const userData = {
         username: formData.get("username"),
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
         password: formData.get("password"),
       }
 
-      // Отправляем данные на сервер через fetch API
+      // Відправляємо дані на сервер через fetch API
       fetch("/api/register", {
         method: "POST",
         headers: {
@@ -113,30 +113,30 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
-            // Если успешно, обновляем UI для авторизованного пользователя
+            // Якщо успішно, оновлюємо UI для авторизованого користувача
             updateAuthUI(true)
 
-            // Закрываем модальное окно регистрации
+            // Закриваємо модальне вікно реєстрації
             registerModal.classList.add("hidden", "scale-0")
 
-            // Показываем сообщение об успешной регистрации и автоматическом входе
-            alert("Регистрация успешна! Вы автоматически вошли в систему.")
+            // Показуємо повідомлення про успішну реєстрацію та автоматичний вхід
+            alert("Реєстрація успішна! Ви автоматично увійшли в систему.")
 
-            // Перенаправляем на главную страницу
+            // Перенаправляємо на головну сторінку
             window.location.href = data.redirect
           } else {
-            // Если ошибка, показываем сообщение
-            alert(data.message || "Ошибка при регистрации")
+            // Якщо помилка, показуємо повідомлення
+            alert(data.message || "Помилка при реєстрації")
           }
         })
         .catch((error) => {
-          console.error("Ошибка:", error)
-          alert("Произошла ошибка при отправке формы")
+          console.error("Помилка:", error)
+          alert("Сталася помилка при відправці форми")
         })
     })
   }
 
-  // Обработка отправки формы входа через AJAX
+  // Обробка відправки форми входу через AJAX
   const loginForm = document.getElementById("loginForm")
   if (loginForm) {
     loginForm.addEventListener("submit", function (e) {
@@ -158,39 +158,39 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
-            // Обновляем UI после успешного входа
+            // Оновлюємо UI після успішного входу
             updateAuthUI(true)
 
-            // Закрываем модальное окно
+            // Закриваємо модальне вікно
             loginModal.classList.add("hidden", "scale-0")
 
-            // Показываем сообщение об успешном входе
-            alert("Вход выполнен успешно!")
+            // Показуємо повідомлення про успішний вхід
+            alert("Вхід виконано успішно!")
 
-            // Перенаправляем на главную страницу
+            // Перенаправляємо на головну сторінку
             window.location.href = data.redirect
           } else {
-            alert(data.message || "Ошибка при входе")
+            alert(data.message || "Помилка при вході")
           }
         })
         .catch((error) => {
-          console.error("Ошибка:", error)
-          alert("Произошла ошибка при отправке формы")
+          console.error("Помилка:", error)
+          alert("Сталася помилка при відправці форми")
         })
     })
   }
 
-  // Проверяем статус авторизации при загрузке страницы
+  // Перевіряємо статус авторизації при завантаженні сторінки
   const authElement = document.querySelector("nav ul li:first-child a")
   if (authElement && authElement.textContent.trim().includes("LOG OUT")) {
-    // Если есть, значит пользователь авторизован
+    // Якщо є, значить користувач авторизований
     updateAuthUI(true)
   } else {
     updateAuthUI(false)
   }
 })
 
-// Обновленная функция для обновления интерфейса после входа/выхода
+// Оновлена функція для оновлення інтерфейсу після входу/виходу
 function updateAuthUI(isLoggedIn) {
   const authElement = document.querySelector("nav ul li:first-child a")
   if (!authElement) return
@@ -201,10 +201,10 @@ function updateAuthUI(isLoggedIn) {
       LOG OUT
     `
     authElement.href = "/logout"
-    authElement.id = "" // Удаляем id, чтобы не срабатывал обработчик registerButton
+    authElement.id = "" // Видаляємо id, щоб не спрацьовував обробник registerButton
     authElement.className = "flex items-center gap-2 text-xl hover:text-yellow-400"
 
-    // Удаляем обработчик события, если он был
+    // Видаляємо обробник події, якщо він був
     authElement.removeEventListener("click", showRegisterModal)
   } else {
     authElement.innerHTML = `
@@ -215,19 +215,19 @@ function updateAuthUI(isLoggedIn) {
     authElement.href = "#"
     authElement.className = "flex items-center gap-2 text-xl hover:text-yellow-400"
 
-    // Добавляем обработчик для кнопки регистрации
+    // Додаємо обробник для кнопки реєстрації
     authElement.addEventListener("click", showRegisterModal)
   }
 
-  // Кнопка заказов всегда видна, но для неавторизованных пользователей
-  // будет показываться уведомление при нажатии
+  // Кнопка замовлень завжди видна, але для неавторизованих користувачів
+  // буде показуватися повідомлення при натисканні
   const ordersButton = document.getElementById("ordersButton")
   if (ordersButton) {
     ordersButton.classList.remove("hidden")
   }
 }
 
-// Функция для показа модального окна регистрации
+// Функція для показу модального вікна реєстрації
 function showRegisterModal() {
   const registerModal = document.getElementById("registerModal")
   if (registerModal) {

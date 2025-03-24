@@ -1,4 +1,3 @@
-/* Cart Modal Tabs */
 .cart-tab, .order-tab {
     cursor: pointer;
     opacity: 0.6;
@@ -38,7 +37,6 @@
     cursor: not-allowed;
 }
 
-/* Cart item animations */
 #cartItems > div {
     transition: all 0.3s ease;
 }
@@ -48,7 +46,6 @@
     border-radius: 0.5rem;
 }
 
-/* Quantity buttons */
 .increase-quantity, .decrease-quantity {
     transition: background-color 0.2s;
 }
